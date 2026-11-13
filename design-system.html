@@ -746,19 +746,19 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .nb-tabs .on{color:var(--n-plasma);font-weight:600}
 .nb-sheet{display:flex;flex-direction:column;gap:12px;padding:12px 16px 24px;border-radius:24px 24px 0 0;background:var(--n-s100)}
 .nb-grab{align-self:center;width:40px;height:4px;border-radius:99px;background:var(--n-lineStrong)}
-.nb-xr{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:22px;padding:clamp(32px,6vw,56px) 20px;border-radius:24px;border:1px solid var(--n-line);background:radial-gradient(ellipse at 50% 115%,#1c2430,#07090d 62%);color:var(--n-ink);font-family:"DM Sans",system-ui,sans-serif}
-.nb-win{display:flex;flex-direction:column;gap:16px;width:100%;max-width:440px;padding:20px;border-radius:28px;border:1px solid #33404f;background:rgba(28,36,48,.82);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.nb-xr{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:22px;padding:clamp(32px,6vw,56px) 20px;border-radius:24px;border:1px solid var(--n-line);background:radial-gradient(ellipse at 50% 115%,#dfe5ec,#f3f5f8 62%);color:var(--n-ink);font-family:"DM Sans",system-ui,sans-serif}
+.nb-win{display:flex;flex-direction:column;gap:16px;width:100%;max-width:440px;padding:20px;border-radius:28px;border:1px solid var(--n-line);background:rgba(255,255,255,.88);box-shadow:0 24px 60px rgba(11,17,23,.12)}
 .nb-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .nb-tiles i{height:80px;border-radius:16px}
-.nb-pill{display:block;text-align:center;padding:10px;border-radius:99px;border:1px solid #33404f;background:#2a3442;font-size:14px;font-weight:500}
-.nb-orn{display:flex;gap:8px;padding:6px;border-radius:99px;border:1px solid #33404f;background:rgba(28,36,48,.82)}
+.nb-pill{display:block;text-align:center;padding:10px;border-radius:99px;border:1px solid var(--n-line);background:var(--n-s300);font-size:14px;font-weight:500}
+.nb-orn{display:flex;gap:8px;padding:6px;border-radius:99px;border:1px solid var(--n-line);background:rgba(255,255,255,.88)}
 .nb-orn i{width:40px;height:40px;border-radius:50%}
-.nb-orn .a{background:var(--n-ink)}.nb-orn .c{background:#2a3442}
-.nb-orn .b{background:rgba(212,242,90,.16);border:2px solid var(--n-ion);box-shadow:0 0 18px rgba(212,242,90,.35);animation:nbGaze 2.4s ease-in-out infinite}
-@keyframes nbGaze{50%{box-shadow:0 0 28px rgba(212,242,90,.6)}}
+.nb-orn .a{background:var(--n-ink)}.nb-orn .c{background:var(--n-s300)}
+.nb-orn .b{background:rgba(212,242,90,.35);border:2px solid var(--n-ion);box-shadow:0 0 18px rgba(86,103,10,.35);animation:nbGaze 2.4s ease-in-out infinite}
+@keyframes nbGaze{50%{box-shadow:0 0 28px rgba(86,103,10,.55)}}
 @media (prefers-reduced-motion:reduce){.nb-orn .b{animation:none}}
-.nb-handle{width:96px;height:6px;border-radius:99px;border:1px solid #33404f;background:#2a3442}
-.nb-ion{font-size:12px;color:var(--n-ion)}
+.nb-handle{width:96px;height:6px;border-radius:99px;border:1px solid var(--n-line);background:var(--n-s300)}
+.nb-ion{font-size:12px;font-weight:500;color:var(--n-ion)}
 .nb-themes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
 @media (max-width:760px){.nb-themes{grid-template-columns:1fr}}
 .nb-close{margin-top:clamp(40px,6vw,72px);padding:clamp(28px,5vw,56px);border-radius:28px;background:var(--paper);border:1px solid var(--line)}
@@ -797,7 +797,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     </div>
   </section>
   <div class="wrap">
-    <div class="nb-stage nb-board" style="--n-bg:#07090d;--n-s100:#0d1117;--n-s200:#141a22;--n-s300:#1c2430;--n-line:#273140;--n-lineStrong:#66768b;--n-ink:#eef3f8;--n-muted:#a3b0bf;--n-subtle:#8593a3;--n-plasma:#2ee6c5;--n-onPlasma:#032019;--n-plasmaSoft:rgba(46,230,197,0.14);--n-flare:#ff8a5b;--n-onFlare:#2a0e02;--n-ion:#d4f25a;--n-success:#45d98f;--n-successSoft:rgba(69,217,143,0.14);--n-warning:#ffc24b;--n-warningSoft:rgba(255,194,75,0.14);--n-danger:#ff6b78;--n-dangerSoft:rgba(255,107,120,0.14)" role="img" aria-label="A board of Nebula components in the dark theme: buttons, an email field with helper text, a switch, a checkbox, status chips, success and error alerts, and a project card">
+    <div class="nb-stage nb-board" style="--n-bg:#f3f5f8;--n-s100:#ffffff;--n-s200:#eef1f5;--n-s300:#e2e7ee;--n-line:#d7dde5;--n-lineStrong:#718090;--n-ink:#0b1117;--n-muted:#465261;--n-subtle:#5a6675;--n-plasma:#00735f;--n-onPlasma:#ffffff;--n-plasmaSoft:rgba(0,115,95,0.10);--n-flare:#b93d0b;--n-onFlare:#ffffff;--n-ion:#56670a;--n-success:#1a7042;--n-successSoft:rgba(26,112,66,0.10);--n-warning:#8a5a00;--n-warningSoft:rgba(138,90,0,0.10);--n-danger:#b4232f;--n-dangerSoft:rgba(180,35,47,0.10)" role="img" aria-label="A board of Nebula components in the light theme: buttons, an email field with helper text, a switch, a checkbox, status chips, success and error alerts, and a project card">
     <div class="nb-col">
       <div class="nb-btns"><span class="nb-btn pri">Start a project</span><span class="nb-btn sec">Download CV</span><span class="nb-btn acc">New work</span></div>
       <div class="nb-field"><span class="nb-lab">Email</span><span class="nb-input">name@example.com</span><span class="nb-help">I reply within a day.</span></div>
@@ -833,7 +833,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
         <div class="body"><p class="big">Tokens first, components second.</p>
           <div class="nb-swatches"><div class="sw"><div class="pair"><i style="background:#2ee6c5"></i><i style="background:#00735f"></i></div><div class="sw-t"><div><b>Plasma</b><span>Primary actions</span></div><code>#2ee6c5<br>#00735f</code></div></div><div class="sw"><div class="pair"><i style="background:#ff8a5b"></i><i style="background:#b93d0b"></i></div><div class="sw-t"><div><b>Flare</b><span>Accent and highlights</span></div><code>#ff8a5b<br>#b93d0b</code></div></div><div class="sw"><div class="pair"><i style="background:#d4f25a"></i><i style="background:#56670a"></i></div><div class="sw-t"><div><b>Ion</b><span>Gaze and focus in XR</span></div><code>#d4f25a<br>#56670a</code></div></div><div class="sw"><div class="pair"><i style="background:#141a22"></i><i style="background:#eef1f5"></i></div><div class="sw-t"><div><b>Surface</b><span>Cards and panels</span></div><code>#141a22<br>#eef1f5</code></div></div><div class="sw"><div class="pair"><i style="background:#07090d"></i><i style="background:#f3f5f8"></i></div><div class="sw-t"><div><b>Background</b><span>Page</span></div><code>#07090d<br>#f3f5f8</code></div></div><div class="sw"><div class="pair"><i style="background:#eef3f8"></i><i style="background:#0b1117"></i></div><div class="sw-t"><div><b>Ink</b><span>Text</span></div><code>#eef3f8<br>#0b1117</code></div></div></div>
           <p class="nb-note">Left: dark theme · Right: light theme</p>
-          <div class="nb-stage nb-type" style="--n-bg:#07090d;--n-s100:#0d1117;--n-s200:#141a22;--n-s300:#1c2430;--n-line:#273140;--n-lineStrong:#66768b;--n-ink:#eef3f8;--n-muted:#a3b0bf;--n-subtle:#8593a3;--n-plasma:#2ee6c5;--n-onPlasma:#032019;--n-plasmaSoft:rgba(46,230,197,0.14);--n-flare:#ff8a5b;--n-onFlare:#2a0e02;--n-ion:#d4f25a;--n-success:#45d98f;--n-successSoft:rgba(69,217,143,0.14);--n-warning:#ffc24b;--n-warningSoft:rgba(255,194,75,0.14);--n-danger:#ff6b78;--n-dangerSoft:rgba(255,107,120,0.14)">
+          <div class="nb-stage nb-type" style="--n-bg:#f3f5f8;--n-s100:#ffffff;--n-s200:#eef1f5;--n-s300:#e2e7ee;--n-line:#d7dde5;--n-lineStrong:#718090;--n-ink:#0b1117;--n-muted:#465261;--n-subtle:#5a6675;--n-plasma:#00735f;--n-onPlasma:#ffffff;--n-plasmaSoft:rgba(0,115,95,0.10);--n-flare:#b93d0b;--n-onFlare:#ffffff;--n-ion:#56670a;--n-success:#1a7042;--n-successSoft:rgba(26,112,66,0.10);--n-warning:#8a5a00;--n-warningSoft:rgba(138,90,0,0.10);--n-danger:#b4232f;--n-dangerSoft:rgba(180,35,47,0.10)">
             <div><p class="t1">Build what people finish</p><span>Sora · Display and headings</span></div>
             <div><p class="t2">Clear labels, calm layouts and honest states.</p><span>DM Sans · Body and interface</span></div>
             <div><p class="t3">--nb-plasma: #2ee6c5;</p><span>JetBrains Mono · Tokens, data and code</span></div>
@@ -849,7 +849,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
         <header><div class="num">05</div><h2>Mobile</h2></header>
         <div class="body"><p class="big">Thumb-first by default.</p>
           <p>22 mobile components: large titles, tab bars, bottom and action sheets, swipe rows, keypads and card stacks. Every swipe has a tap alternative.</p>
-          <div class="nb-phones" role="img" aria-label="Two phone screens in Nebula's dark theme: a Projects list with a tab bar, and a bottom sheet for placing a model in a room"><div class="nb-phone" style="--n-bg:#07090d;--n-s100:#0d1117;--n-s200:#141a22;--n-s300:#1c2430;--n-line:#273140;--n-lineStrong:#66768b;--n-ink:#eef3f8;--n-muted:#a3b0bf;--n-subtle:#8593a3;--n-plasma:#2ee6c5;--n-onPlasma:#032019;--n-plasmaSoft:rgba(46,230,197,0.14);--n-flare:#ff8a5b;--n-onFlare:#2a0e02;--n-ion:#d4f25a;--n-success:#45d98f;--n-successSoft:rgba(69,217,143,0.14);--n-warning:#ffc24b;--n-warningSoft:rgba(255,194,75,0.14);--n-danger:#ff6b78;--n-dangerSoft:rgba(255,107,120,0.14)">
+          <div class="nb-phones" role="img" aria-label="Two phone screens in Nebula's light theme: a Projects list with a tab bar, and a bottom sheet for placing a model in a room"><div class="nb-phone" style="--n-bg:#f3f5f8;--n-s100:#ffffff;--n-s200:#eef1f5;--n-s300:#e2e7ee;--n-line:#d7dde5;--n-lineStrong:#718090;--n-ink:#0b1117;--n-muted:#465261;--n-subtle:#5a6675;--n-plasma:#00735f;--n-onPlasma:#ffffff;--n-plasmaSoft:rgba(0,115,95,0.10);--n-flare:#b93d0b;--n-onFlare:#ffffff;--n-ion:#56670a;--n-success:#1a7042;--n-successSoft:rgba(26,112,66,0.10);--n-warning:#8a5a00;--n-warningSoft:rgba(138,90,0,0.10);--n-danger:#b4232f;--n-dangerSoft:rgba(180,35,47,0.10)">
       <div class="nb-ph-top"><span class="nb-s">Monday</span><span class="nb-big">Projects</span><span class="nb-search">Search projects</span></div>
       <div class="nb-list">
         <div><p>Checkout redesign</p><span>Web + mobile</span></div>
@@ -858,7 +858,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
       </div>
       <div class="nb-fill"></div>
       <div class="nb-tabs"><span class="on">Home</span><span>Search</span><span>Inbox</span><span>Me</span></div>
-    </div><div class="nb-phone sheet" style="--n-bg:#07090d;--n-s100:#0d1117;--n-s200:#141a22;--n-s300:#1c2430;--n-line:#273140;--n-lineStrong:#66768b;--n-ink:#eef3f8;--n-muted:#a3b0bf;--n-subtle:#8593a3;--n-plasma:#2ee6c5;--n-onPlasma:#032019;--n-plasmaSoft:rgba(46,230,197,0.14);--n-flare:#ff8a5b;--n-onFlare:#2a0e02;--n-ion:#d4f25a;--n-success:#45d98f;--n-successSoft:rgba(69,217,143,0.14);--n-warning:#ffc24b;--n-warningSoft:rgba(255,194,75,0.14);--n-danger:#ff6b78;--n-dangerSoft:rgba(255,107,120,0.14)">
+    </div><div class="nb-phone sheet" style="--n-bg:#f3f5f8;--n-s100:#ffffff;--n-s200:#eef1f5;--n-s300:#e2e7ee;--n-line:#d7dde5;--n-lineStrong:#718090;--n-ink:#0b1117;--n-muted:#465261;--n-subtle:#5a6675;--n-plasma:#00735f;--n-onPlasma:#ffffff;--n-plasmaSoft:rgba(0,115,95,0.10);--n-flare:#b93d0b;--n-onFlare:#ffffff;--n-ion:#56670a;--n-success:#1a7042;--n-successSoft:rgba(26,112,66,0.10);--n-warning:#8a5a00;--n-warningSoft:rgba(138,90,0,0.10);--n-danger:#b4232f;--n-dangerSoft:rgba(180,35,47,0.10)">
       <div class="nb-fill"></div>
       <div class="nb-sheet"><span class="nb-grab"></span><p class="nb-big sm">Place model</p>
         <div class="nb-list flat"><div><p>Sofa</p><span>2.1 × 0.9 m</span></div><div><p>Lamp</p><span>0.4 × 1.6 m</span></div></div>
@@ -869,9 +869,9 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
         <header><div class="num">06</div><h2>XR & spatial</h2></header>
         <div class="body"><p class="big">Hover means gaze.</p>
           <p>29 spatial components: windows, ornaments, gaze rings, radial menus, hand menus and spatial toasts. Dwell and voice back up every pinch.</p>
-          <div class="nb-xr" style="--n-bg:#07090d;--n-s100:#0d1117;--n-s200:#141a22;--n-s300:#1c2430;--n-line:#273140;--n-lineStrong:#66768b;--n-ink:#eef3f8;--n-muted:#a3b0bf;--n-subtle:#8593a3;--n-plasma:#2ee6c5;--n-onPlasma:#032019;--n-plasmaSoft:rgba(46,230,197,0.14);--n-flare:#ff8a5b;--n-onFlare:#2a0e02;--n-ion:#d4f25a;--n-success:#45d98f;--n-successSoft:rgba(69,217,143,0.14);--n-warning:#ffc24b;--n-warningSoft:rgba(255,194,75,0.14);--n-danger:#ff6b78;--n-dangerSoft:rgba(255,107,120,0.14)" role="img" aria-label="A spatial window titled Gallery with three tiles and a Place in room button, an ornament bar below it, and a lime ion ring showing where the user is looking">
+          <div class="nb-xr" style="--n-bg:#f3f5f8;--n-s100:#ffffff;--n-s200:#eef1f5;--n-s300:#e2e7ee;--n-line:#d7dde5;--n-lineStrong:#718090;--n-ink:#0b1117;--n-muted:#465261;--n-subtle:#5a6675;--n-plasma:#00735f;--n-onPlasma:#ffffff;--n-plasmaSoft:rgba(0,115,95,0.10);--n-flare:#b93d0b;--n-onFlare:#ffffff;--n-ion:#56670a;--n-success:#1a7042;--n-successSoft:rgba(26,112,66,0.10);--n-warning:#8a5a00;--n-warningSoft:rgba(138,90,0,0.10);--n-danger:#b4232f;--n-dangerSoft:rgba(180,35,47,0.10)" role="img" aria-label="A spatial window titled Gallery with three tiles and a Place in room button, an ornament bar below it, and a lime ion ring showing where the user is looking">
       <div class="nb-win"><div class="nb-row"><span class="nb-big">Gallery</span><span class="nb-s">Vision Pro · Quest</span></div>
-        <div class="nb-tiles"><i style="background:#123a36"></i><i style="background:#3a2a24"></i><i style="background:#333d1f"></i></div>
+        <div class="nb-tiles"><i style="background:#cdeee6"></i><i style="background:#f6dccf"></i><i style="background:#e6efc4"></i></div>
         <span class="nb-pill">Place in room</span></div>
       <div class="nb-orn"><i class="a"></i><i class="b"></i><i class="c"></i></div>
       <span class="nb-handle"></span>
