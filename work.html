@@ -347,7 +347,9 @@ footer{padding-block:48px 40px}
 @media (max-width:520px){.facts{grid-template-columns:1fr}}
 
 /* designs grid */
-.designs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,32px)}
+.designs{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,3vw,32px)}
+.designs .design{flex:0 1 calc((100% - 2*clamp(20px,3vw,32px))/3)}
+.designs .behance-more{flex-basis:100%}
 .design{display:flex;flex-direction:column;gap:14px;min-width:0}
 .design .card-visual{aspect-ratio:404/316;border-radius:18px;background:var(--blush)}
 .design h3{font-family:var(--head);font-weight:400;text-transform:uppercase;color:var(--oxblood);font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.05;margin:0}
@@ -358,8 +360,8 @@ footer{padding-block:48px 40px}
 .design:hover .arrow{transform:translate(3px,-3px)}
 .behance-more{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--sand);border-radius:18px;padding:24px 28px;margin-top:8px}
 .behance-more p{margin:0;color:var(--ink);max-width:52ch}
-@media (max-width:900px){.designs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.designs{grid-template-columns:1fr}}
+@media (max-width:900px){.designs .design{flex-basis:calc((100% - clamp(20px,3vw,32px))/2)}}
+@media (max-width:560px){.designs .design{flex-basis:100%}}
 
 /* achievements */
 .ach{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -456,7 +458,7 @@ footer{padding-block:48px 40px}
     <div class="wrap">
       <div class="tabs" role="tablist" aria-label="Work type">
         <button class="tab" role="tab" id="tab-cs" aria-controls="case-studies" aria-selected="true">Case studies <span class="n">3</span></button>
-        <button class="tab" role="tab" id="tab-ds" aria-controls="designs" aria-selected="false" tabindex="-1">Designs <span class="n">6</span></button>
+        <button class="tab" role="tab" id="tab-ds" aria-controls="designs" aria-selected="false" tabindex="-1">Designs <span class="n">7</span></button>
       </div>
 
       <div id="case-studies" role="tabpanel" aria-labelledby="tab-cs">
@@ -537,6 +539,13 @@ footer{padding-block:48px 40px}
           <h3>ÉLANE Living storefront</h3>
           <div class="tags"><span class="chip">Web</span><span class="chip">E-commerce</span><span class="chip">UI/UX</span></div>
           <span class="go">View design <span class="arrow">↗</span></span>
+        </a>
+        <a class="design" href="https://www.behance.net/gallery/256240721/Nuvra-SaaS-Landing-Page-Case-Study-Arabic-%28RTL%29-UIUX" target="_blank" rel="noopener">
+          <div class="card-visual"><img src="bh-nuvra.webp" alt="Nuvra SaaS landing page cover" loading="lazy"></div>
+          <div class="card-meta"><span>Arabic–English RTL case study</span></div>
+          <h3>Nuvra SaaS landing page</h3>
+          <div class="tags"><span class="chip">SaaS</span><span class="chip">Landing page</span><span class="chip">RTL</span></div>
+          <span class="go">View on Behance <span class="arrow">↗</span></span>
         </a>
         <a class="design" href="https://www.behance.net/gallery/206789871/UX-Case-Study-Health-and-Wellness-App" target="_blank" rel="noopener">
           <div class="card-visual"><img src="bh-health-wellness.png" alt="Health and wellness app cover" loading="lazy"></div>

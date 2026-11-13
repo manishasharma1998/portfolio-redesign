@@ -347,7 +347,9 @@ footer{padding-block:48px 40px}
 @media (max-width:520px){.facts{grid-template-columns:1fr}}
 
 /* designs grid */
-.designs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,32px)}
+.designs{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,3vw,32px)}
+.designs .design{flex:0 1 calc((100% - 2*clamp(20px,3vw,32px))/3)}
+.designs .behance-more{flex-basis:100%}
 .design{display:flex;flex-direction:column;gap:14px;min-width:0}
 .design .card-visual{aspect-ratio:404/316;border-radius:18px;background:var(--blush)}
 .design h3{font-family:var(--head);font-weight:400;text-transform:uppercase;color:var(--oxblood);font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.05;margin:0}
@@ -358,8 +360,8 @@ footer{padding-block:48px 40px}
 .design:hover .arrow{transform:translate(3px,-3px)}
 .behance-more{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--sand);border-radius:18px;padding:24px 28px;margin-top:8px}
 .behance-more p{margin:0;color:var(--ink);max-width:52ch}
-@media (max-width:900px){.designs{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){.designs{grid-template-columns:1fr}}
+@media (max-width:900px){.designs .design{flex-basis:calc((100% - clamp(20px,3vw,32px))/2)}}
+@media (max-width:560px){.designs .design{flex-basis:100%}}
 
 /* achievements */
 .ach{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -485,31 +487,6 @@ footer{padding-block:48px 40px}
     </div>
   </div>
 
-  <section id="services" style="padding-bottom:0">
-    <div class="wrap">
-      <div class="head">
-        <div><span class="eyebrow">What I do</span><h2 class="h2">Four skills, one <em>process</em>.</h2></div>
-        <p class="lead" style="max-width:36ch">Research decides what to build. Design, words and testing decide whether people finish it.</p>
-      </div>
-      <div class="service">
-        <h3><span class="st" aria-hidden="true">✦</span>UX &amp; UI design</h3>
-        <div><p>End-to-end web and mobile products, from user flows and wireframes to high-fidelity UI and pixel-accurate handoff.</p><div class="chips"><span class="chip">Product design</span><span class="chip">Design systems</span><span class="chip">Prototyping</span><span class="chip">Arabic–English RTL</span><span class="chip">WCAG 2.2 AA</span></div></div>
-      </div>
-      <div class="service">
-        <h3><span class="st" aria-hidden="true">✦</span>Conversion rate optimisation</h3>
-        <div><p>I find where the funnel leaks, work out why, and test the fix before it ships. Checkout drop-off went from 60% to 35% this way.</p><div class="chips"><span class="chip">Funnel analysis</span><span class="chip">Heatmaps and session insights</span><span class="chip">A/B and multivariate testing</span><span class="chip">Experiment backlog</span><span class="chip">Checkout and onboarding</span></div></div>
-      </div>
-      <div class="service">
-        <h3><span class="st" aria-hidden="true">✦</span>UX writing &amp; content</h3>
-        <div><p>The words inside the interface: microcopy, error messages, empty states and the voice and tone guidelines behind them.</p><div class="chips"><span class="chip">Microcopy</span><span class="chip">Voice and tone</span><span class="chip">Error messages and empty states</span><span class="chip">Content strategy</span></div></div>
-      </div>
-      <div class="service">
-        <h3><span class="st" aria-hidden="true">✦</span>XR &amp; spatial design</h3>
-        <div><p>AR and VR scenes built in Unity and Blender, tested in a real headset for comfort, scale and wayfinding.</p><div class="chips"><span class="chip">AR/VR prototyping</span><span class="chip">Unity</span><span class="chip">Blender</span><span class="chip">Spatial UX</span></div></div>
-      </div>
-    </div>
-  </section>
-
   <section id="work">
     <div class="wrap">
       <div class="head">
@@ -526,6 +503,13 @@ footer{padding-block:48px 40px}
           <h3>ÉLANE Living storefront</h3>
           <div class="tags"><span class="chip">Web</span><span class="chip">E-commerce</span><span class="chip">UI/UX</span></div>
           <span class="go">View design <span class="arrow">↗</span></span>
+        </a>
+        <a class="design" href="https://www.behance.net/gallery/256240721/Nuvra-SaaS-Landing-Page-Case-Study-Arabic-%28RTL%29-UIUX" target="_blank" rel="noopener">
+          <div class="card-visual"><img src="bh-nuvra.webp" alt="Nuvra SaaS landing page cover" loading="lazy"></div>
+          <div class="card-meta"><span>Arabic–English RTL case study</span></div>
+          <h3>Nuvra SaaS landing page</h3>
+          <div class="tags"><span class="chip">SaaS</span><span class="chip">Landing page</span><span class="chip">RTL</span></div>
+          <span class="go">View on Behance <span class="arrow">↗</span></span>
         </a>
         <a class="design" href="https://www.behance.net/gallery/206789871/UX-Case-Study-Health-and-Wellness-App" target="_blank" rel="noopener">
           <div class="card-visual"><img src="bh-health-wellness.png" alt="Health and wellness app cover" loading="lazy"></div>
@@ -578,6 +562,31 @@ footer{padding-block:48px 40px}
         <div><b>13</b><span>Categories</span></div>
         <div><b>2</b><span>Themes, one token set</span></div>
         <div><b>AA</b><span>WCAG contrast in both themes</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="eyebrow">What I do</span><h2 class="h2">Four skills, one <em>process</em>.</h2></div>
+        <p class="lead" style="max-width:36ch">Research decides what to build. Design, words and testing decide whether people finish it.</p>
+      </div>
+      <div class="service">
+        <h3><span class="st" aria-hidden="true">✦</span>UX &amp; UI design</h3>
+        <div><p>End-to-end web and mobile products, from user flows and wireframes to high-fidelity UI and pixel-accurate handoff.</p><div class="chips"><span class="chip">Product design</span><span class="chip">Design systems</span><span class="chip">Prototyping</span><span class="chip">Arabic–English RTL</span><span class="chip">WCAG 2.2 AA</span></div></div>
+      </div>
+      <div class="service">
+        <h3><span class="st" aria-hidden="true">✦</span>Conversion rate optimisation</h3>
+        <div><p>I find where the funnel leaks, work out why, and test the fix before it ships. Checkout drop-off went from 60% to 35% this way.</p><div class="chips"><span class="chip">Funnel analysis</span><span class="chip">Heatmaps and session insights</span><span class="chip">A/B and multivariate testing</span><span class="chip">Experiment backlog</span><span class="chip">Checkout and onboarding</span></div></div>
+      </div>
+      <div class="service">
+        <h3><span class="st" aria-hidden="true">✦</span>UX writing &amp; content</h3>
+        <div><p>The words inside the interface: microcopy, error messages, empty states and the voice and tone guidelines behind them.</p><div class="chips"><span class="chip">Microcopy</span><span class="chip">Voice and tone</span><span class="chip">Error messages and empty states</span><span class="chip">Content strategy</span></div></div>
+      </div>
+      <div class="service">
+        <h3><span class="st" aria-hidden="true">✦</span>XR &amp; spatial design</h3>
+        <div><p>AR and VR scenes built in Unity and Blender, tested in a real headset for comfort, scale and wayfinding.</p><div class="chips"><span class="chip">AR/VR prototyping</span><span class="chip">Unity</span><span class="chip">Blender</span><span class="chip">Spatial UX</span></div></div>
       </div>
     </div>
   </section>
