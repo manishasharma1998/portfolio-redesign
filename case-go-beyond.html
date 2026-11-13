@@ -539,6 +539,37 @@ footer{padding-block:48px 40px}
 .swatches div{width:110px}
 .swatches i{display:block;height:64px;border-radius:12px;border:1px solid var(--line)}
 .swatches span{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.empathy{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
+.eq{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+.eq .k{display:block;font-family:var(--head);font-size:1.5rem;text-transform:uppercase;color:var(--oxblood);margin-bottom:4px}
+.eq ul.pts{margin:8px 0 0}
+.ecenter{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:74px;border-radius:50%;background:var(--oxblood);color:var(--cream);display:grid;place-items:center;font-family:var(--head);font-size:1rem;text-transform:uppercase;border:5px solid var(--cream)}
+@media (max-width:640px){.empathy{grid-template-columns:1fr}.ecenter{display:none}}
+.qchips{display:flex;flex-wrap:wrap;gap:8px}
+.qchips span{background:var(--cream);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:14px;color:var(--ink)}
+.flow{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,32px);margin-top:20px}
+.fl-col{display:flex;flex-direction:column;align-items:center;gap:0;min-width:0}
+.fl-row{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap}
+.fl-row.wrap{flex-wrap:wrap}
+.fl-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:6px;padding-top:16px;border-top:1px dashed var(--line)}
+.node{display:inline-block;background:var(--cream);border:1.5px solid var(--oxblood);color:var(--oxblood);border-radius:12px;padding:9px 16px;font-family:var(--display);font-weight:600;font-size:13px;text-align:center;max-width:100%}
+.node.sm{padding:7px 12px;font-size:12.5px}
+.node.start,.node.end{border-radius:999px;background:var(--oxblood);color:var(--cream)}
+.node.hi{background:var(--oxblood);color:var(--cream)}
+.node.acc{background:var(--brick);border-color:var(--brick);color:var(--cream)}
+.node.q{border-style:dashed;background:var(--blush)}
+.note{font-size:13px;color:var(--muted);margin-top:6px;text-align:center;max-width:32ch}
+.ar{display:block;width:2px;height:20px;background:var(--brick);position:relative;margin:4px 0}
+.ar::after{content:"";position:absolute;left:-4px;bottom:-2px;border:5px solid transparent;border-top:6px solid var(--brick);border-bottom:0}
+@media (max-width:640px){.fl-split{grid-template-columns:1fr}.fl-row{flex-wrap:wrap}}
+.persona3 .phead{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.persona3 .av-img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:center 25%;flex:none;background:var(--sand);border:2px solid var(--blush)}
+.persona3 h3{margin:0 !important}
+.persona3 .facts-line{margin:4px 0 0}
+.persona3 > p{margin:0 0 8px}
+.persona3 ul.pts{margin:8px 0 0}
+.persona3 .credit{margin-top:14px;font-size:12px}
 .persona2{display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden}
 .persona2 .ph{aspect-ratio:4/3;background:var(--sand);overflow:hidden}
 .persona2 .ph img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
@@ -626,24 +657,61 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
         <header><div class="num">03</div><h2>Research</h2></header>
         <div class="body">
           <p class="big">I interviewed 5 users one to one over video call, then ran an online survey to check the patterns across a wider group.</p>
-          <p>The interviews covered health routines, the apps people already used, what got them started, which features helped, how they handled stress, and whether reminders and community features would make a difference.</p>
           <div class="pull">“It is so hard to maintain my initial motivation after a few days!”<small>From the empathy map</small></div>
-          <figure class="shots" style="grid-template-columns:1fr"><img src="gb-empathy.webp" alt="Empathy map showing what users say, think, do and feel" loading="lazy"><figcaption>Empathy map: says, thinks, does, feels</figcaption></figure></div>
+          <div class="empathy">
+            <div class="eq"><span class="k">Says</span><ul class="pts">
+              <li>“Sometimes I can't keep track on my own. I think an app can help me better.”</li>
+              <li>“Discussion forums are a good way to interact and share information.”</li>
+              <li>“I'd like to do it from the comfort of my home, whenever I want.”</li>
+              <li>“The app can be confusing for new users at first.”</li></ul></div>
+            <div class="eq"><span class="k">Thinks</span><ul class="pts">
+              <li>It's so hard to keep my initial motivation after a few days.</li>
+              <li>Are these apps really helpful?</li>
+              <li>Maybe working out with other people would help.</li>
+              <li>Diet tracking and meal planning would be useful.</li></ul></div>
+            <div class="eq"><span class="k">Does</span><ul class="pts">
+              <li>Follows a routine but struggles to stay consistent.</li>
+              <li>Searches online for healthy cooking videos.</li>
+              <li>Follows structured workouts from fitness influencers.</li>
+              <li>Logs workouts and tracks progress in an app.</li>
+              <li>Journals regularly to look after their mental health.</li></ul></div>
+            <div class="eq"><span class="k">Feels</span><ul class="pts">
+              <li>Frustrated by the lack of personalisation.</li>
+              <li>Isolated working out alone, and easily demotivated.</li>
+              <li>Good when in control of their food habits.</li>
+              <li>Overwhelmed by too much content to navigate.</li></ul></div>
+            <div class="ecenter" aria-hidden="true">User</div>
+          </div>
+          <div class="chart" style="margin-top:20px">
+            <h3>What I asked in interviews</h3>
+            <p class="sub">5 one-to-one video calls with people who matched the target audience.</p>
+            <div class="qchips">
+              <span>Tell me about your health routine and habits.</span>
+              <span>Do you focus more on physical or mental health?</span>
+              <span>Which apps do you use for health and wellness?</span>
+              <span>What made you start using an app?</span>
+              <span>Which features did you find most useful?</span>
+              <span>Are diet planning or tracker features important to you?</span>
+              <span>How do you relieve stress or anxiety?</span>
+              <span>Would community forums help you?</span>
+              <span>Do you need reminders?</span>
+              <span>What challenges do you face using these apps?</span>
+              <span>What would you improve?</span>
+            </div>
+          </div></div>
       </section>
       <section class="chapter">
         <header><div class="num">04</div><h2>Personas</h2></header>
         <div class="body">
           <div class="cards2">
-            <div class="tile persona2">
-              <div class="ph"><img src="https://images.unsplash.com/photo-1629263824130-ff51977880a8?auto=format&fit=crop&w=900&q=80" alt="Portrait representing Ajay, a 21-year-old design student" loading="lazy"></div>
-              <h3>Ajay</h3><div class="facts-line">21 · Design student · Delhi</div>
+            <div class="tile persona3">
+              <div class="phead"><img class="av-img" src="https://images.unsplash.com/photo-1629263824130-ff51977880a8?auto=format&fit=crop&w=200&h=200&q=80" alt="Portrait representing Ajay" loading="lazy"><div><h3>Ajay</h3><div class="facts-line">21 · Design student · Delhi</div></div></div>
               <p>Wants a healthier relationship with food and to see his fitness progress.</p>
               <ul class="pts"><li>No personalisation in workout plans</li><li>Hard to find recipes for his dietary needs</li><li>Struggles to stay motivated alone</li></ul>
               <p class="credit">Photo: <a href="https://unsplash.com/photos/S_Hj7iHPOS4" target="_blank" rel="noopener">Shazaf Zafar on Unsplash</a></p>
             </div>
-            <div class="tile persona2">
-              <div class="ph"><img src="https://images.unsplash.com/photo-1726156619056-5de67024df67?auto=format&fit=crop&w=900&q=80" alt="Portrait representing Noor, a 23-year-old PR department head" loading="lazy"></div>
-              <h3>Noor</h3><div class="facts-line">23 · PR department head · Mumbai</div>
+            <div class="tile persona3">
+              <div class="phead"><img class="av-img" src="https://images.unsplash.com/photo-1726156619056-5de67024df67?auto=format&fit=crop&w=200&h=200&q=80" alt="Portrait representing Noor" loading="lazy"><div><h3>Noor</h3><div class="facts-line">23 · PR department head · Mumbai</div></div></div>
               <p>Wants to put her mental health first and connect with people who share her goals.</p>
               <ul class="pts"><li>Apps push subscriptions before showing value</li><li>Finds tracking progress in a diary inconvenient</li><li>Feels lethargic after disrupted sleep</li></ul>
               <p class="credit">Photo: <a href="https://unsplash.com/photos/xOOAjPS3zX0" target="_blank" rel="noopener">Raul Cardona on Unsplash</a></p>
@@ -654,7 +722,36 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
         <header><div class="num">05</div><h2>Structure</h2></header>
         <div class="body">
           <p>I mapped how people move through the app, from launch and sign-up through a short survey that personalises their home screen, then on to fitness, diet, wellness, discovery and community.</p>
-          <figure class="shots" style="grid-template-columns:1fr"><img src="gb-flow.webp" alt="User flow from launch through sign-up, survey, home, diet plan and meal choices" loading="lazy"><figcaption>User flow</figcaption></figure>
+          <div class="flow" role="img" aria-label="User flow: launch, splash screen, existing user check, sign up or log in or continue as guest, survey, home, then fitness, diet plan, wellness, discover, community and profile. The diet plan path leads to a personalisation survey, then either For you meal plans or Diverse meal plans by cuisine and state, ending with calorie tracking.">
+            <div class="fl-col">
+              <span class="node start">Launch</span><span class="ar"></span>
+              <span class="node">Splash screen</span><span class="ar"></span>
+              <span class="node q">Existing user?</span><span class="ar"></span>
+              <div class="fl-row"><span class="node sm">Sign up</span><span class="node sm">Continue as guest</span><span class="node sm">Log in</span></div><span class="ar"></span>
+              <span class="node">Onboarding survey</span><span class="ar"></span>
+              <span class="node hi">Home</span><span class="ar"></span>
+              <div class="fl-row wrap"><span class="node sm">Fitness</span><span class="node sm acc">Diet plan</span><span class="node sm">Wellness</span><span class="node sm">Discover</span><span class="node sm">Community</span><span class="node sm">Profile</span></div><span class="ar"></span>
+              <span class="node">Diet survey for personalisation</span><span class="ar"></span>
+            </div>
+            <div class="fl-split">
+              <div class="fl-col">
+                <span class="node acc">For you</span><span class="ar"></span>
+                <span class="node">Your meal plan</span>
+                <span class="note">Curated breakfast, lunch and dinner · shuffle · filter</span><span class="ar"></span>
+                <span class="node q">Like the plan?</span><span class="ar"></span>
+                <div class="fl-row"><span class="node sm">Yes: done</span><span class="node sm">No: pick from 3 alternatives or shuffle a new plan</span></div>
+              </div>
+              <div class="fl-col">
+                <span class="node acc">Diverse meal plans</span><span class="ar"></span>
+                <div class="fl-row"><span class="node sm">Random picker</span><span class="node sm">Cuisines</span></div><span class="ar"></span>
+                <span class="node">Choose a cuisine, e.g. South Indian</span><span class="ar"></span>
+                <span class="node">Choose a state</span>
+                <span class="note">Karnataka · Tamil Nadu · Kerala · Telangana and more</span><span class="ar"></span>
+                <span class="node">Curated meals</span>
+              </div>
+            </div>
+            <div class="fl-col" style="margin-top:6px"><span class="ar"></span><span class="node end">Calorie tracker updates · end</span></div>
+          </div>
           <p style="margin-top:16px">The diet section lets people pick a cuisine and a state, such as Karnataka, Tamil Nadu, Kerala or Telangana, then shuffle or filter a curated breakfast, lunch and dinner plan, with calorie tracking.</p></div>
       </section>
       <section class="chapter">
