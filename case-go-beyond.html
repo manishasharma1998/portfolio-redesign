@@ -539,6 +539,15 @@ footer{padding-block:48px 40px}
 .swatches div{width:110px}
 .swatches i{display:block;height:64px;border-radius:12px;border:1px solid var(--line)}
 .swatches span{display:block;margin-top:6px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.persona2{display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden}
+.persona2 .ph{aspect-ratio:4/3;background:var(--sand);overflow:hidden}
+.persona2 .ph img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.persona2 > :not(.ph){margin-left:22px;margin-right:22px}
+.persona2 h3{margin-top:20px !important}
+.persona2 .credit{margin-bottom:18px}
+ul.pts{list-style:none;padding:0;margin:10px 22px 4px;display:grid;gap:8px}
+ul.pts li{position:relative;padding-left:22px;color:var(--ink);font-size:15px;line-height:1.45}
+ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick);font-size:13px}
 .persona{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start}
 .persona .av{width:64px;height:64px;border-radius:50%;background:var(--oxblood);color:var(--cream);display:grid;place-items:center;font-family:var(--head);font-size:26px}
 .persona .facts-line{font-size:14px;color:var(--brick);font-family:var(--display);font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:2px 0 10px}
@@ -625,12 +634,20 @@ footer{padding-block:48px 40px}
         <header><div class="num">04</div><h2>Personas</h2></header>
         <div class="body">
           <div class="cards2">
-            <div class="tile persona"><div class="av" aria-hidden="true">A</div><div><h3 style="margin-top:0">Ajay</h3><div class="facts-line">21 · Design student · Delhi</div>
+            <div class="tile persona2">
+              <div class="ph"><img src="https://images.unsplash.com/photo-1629263824130-ff51977880a8?auto=format&fit=crop&w=900&q=80" alt="Portrait representing Ajay, a 21-year-old design student" loading="lazy"></div>
+              <h3>Ajay</h3><div class="facts-line">21 · Design student · Delhi</div>
               <p>Wants a healthier relationship with food and to see his fitness progress.</p>
-              <ul><li>No personalisation in workout plans</li><li>Hard to find recipes for his dietary needs</li><li>Struggles to stay motivated alone</li></ul></div></div>
-            <div class="tile persona"><div class="av" aria-hidden="true">N</div><div><h3 style="margin-top:0">Noor</h3><div class="facts-line">23 · PR department head · Mumbai</div>
+              <ul class="pts"><li>No personalisation in workout plans</li><li>Hard to find recipes for his dietary needs</li><li>Struggles to stay motivated alone</li></ul>
+              <p class="credit">Photo: <a href="https://unsplash.com/photos/S_Hj7iHPOS4" target="_blank" rel="noopener">Shazaf Zafar on Unsplash</a></p>
+            </div>
+            <div class="tile persona2">
+              <div class="ph"><img src="https://images.unsplash.com/photo-1726156619056-5de67024df67?auto=format&fit=crop&w=900&q=80" alt="Portrait representing Noor, a 23-year-old PR department head" loading="lazy"></div>
+              <h3>Noor</h3><div class="facts-line">23 · PR department head · Mumbai</div>
               <p>Wants to put her mental health first and connect with people who share her goals.</p>
-              <ul><li>Apps push subscriptions before showing value</li><li>Finds tracking progress in a diary inconvenient</li><li>Feels lethargic after disrupted sleep</li></ul></div></div>
+              <ul class="pts"><li>Apps push subscriptions before showing value</li><li>Finds tracking progress in a diary inconvenient</li><li>Feels lethargic after disrupted sleep</li></ul>
+              <p class="credit">Photo: <a href="https://unsplash.com/photos/xOOAjPS3zX0" target="_blank" rel="noopener">Raul Cardona on Unsplash</a></p>
+            </div>
           </div></div>
       </section>
       <section class="chapter">
