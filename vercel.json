@@ -1,7 +1,11 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/work/:slug", "destination": "/work#:slug", "permanent": false },
+    { "source": "/work/checkout-recovery", "destination": "/case-checkout-cro", "permanent": false },
+    { "source": "/work/saas-design-system", "destination": "/case-design-system", "permanent": false },
+    { "source": "/work/iit-delhi-xr", "destination": "/case-xr", "permanent": false },
+    { "source": "/work/elane-living", "destination": "/work#designs", "permanent": false },
+    { "source": "/work/:slug", "destination": "/work", "permanent": false },
     { "source": "/design-system", "destination": "/#nebula", "permanent": false },
     { "source": "/resume", "destination": "/Manisha-Sharma-Resume.pdf", "permanent": false }
   ]
