@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/work/:slug", "destination": "/work#:slug", "permanent": false },
+    { "source": "/design-system", "destination": "/#nebula", "permanent": false },
+    { "source": "/resume", "destination": "/Manisha-Sharma-Resume.pdf", "permanent": false }
+  ]
+}
