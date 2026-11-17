@@ -765,6 +765,17 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .nb-close h2{font-family:var(--head);font-weight:400;text-transform:uppercase;color:var(--oxblood);font-size:clamp(2rem,4.6vw,3.4rem);line-height:1;margin:0 0 14px;text-wrap:balance}
 .nb-close h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.4px var(--oxblood)}
 .nb-close p{color:var(--muted);margin:0 0 24px;max-width:52ch}
+
+/* action colour: maroon only for things you can act on */
+:root{--oxblood:#3A2622;--brick:#86604C;--clay:#4A302A;--cta:#7A2A22;--cta-h:#5C1E18;--cta-fg:#FFF8F2}
+.btn-solid,.links .btn-solid{background:var(--cta);border-color:var(--cta);color:var(--cta-fg)}
+.btn-solid:hover,.links .btn-solid:hover{background:var(--cta-h);border-color:var(--cta-h);color:var(--cta-fg)}
+.btn-line:hover,.links .btn:hover,.copy:hover{background:var(--oxblood);border-color:var(--oxblood);color:var(--cream)}
+.text-link{color:var(--cta);border-bottom-color:var(--cta)}
+.card-foot .go,.design .go,.next-case .k+h3~*,.crumbs a,.credit a{color:var(--cta)}
+.mail a{color:var(--cta);border-bottom-color:var(--cta)}
+.nav-links a.on,.nav-links a[aria-current]{color:var(--cta)}
+.btn:focus-visible,a:focus-visible,.tab:focus-visible{outline-color:var(--cta)}
 </style>
 </head>
 <body>
@@ -798,7 +809,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     <div class="wrap">
       <div class="tabs" role="tablist" aria-label="Work type">
         <button class="tab" role="tab" id="tab-cs" aria-controls="case-studies" aria-selected="true">Case studies <span class="n">4</span></button>
-        <button class="tab" role="tab" id="tab-ds" aria-controls="designs" aria-selected="false" tabindex="-1">Designs <span class="n">9</span></button>
+        <button class="tab" role="tab" id="tab-ds" aria-controls="designs" aria-selected="false" tabindex="-1">Designs <span class="n">8</span></button>
       </div>
 
       <div id="case-studies" role="tabpanel" aria-labelledby="tab-cs">
@@ -837,13 +848,6 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 
       <div id="designs" role="tabpanel" aria-labelledby="tab-ds" hidden>
         <div class="designs">
-        <a class="design" href="https://www.behance.net/gallery/258620233/Tarnhollow-Game-UI-UX-for-a-Nordic-Folklore-RPG" target="_blank" rel="noopener" id="tarnhollow">
-          <div class="card-visual photo"><img src="th-card.webp" alt="Tarnhollow game title card with a girl kneeling by a forest tarn" loading="lazy"></div>
-          <div class="card-meta"><span>Game UI and UX · Nordic folklore RPG</span></div>
-          <h3>Tarnhollow game interface</h3>
-          <div class="tags"><span class="chip">Game UI</span><span class="chip">HUD</span><span class="chip">Accessibility</span></div>
-          <span class="go">View on Behance <span class="arrow">↗</span></span>
-        </a>
         <a class="design" href="https://www.behance.net/gallery/258590875/Daftar-Bilingual-Wallet-Pay-Later-App-%28Arabic-RTL%29" target="_blank" rel="noopener" id="daftar">
           <div class="card-visual photo"><img src="dt-card.webp" alt="Daftar wallet app screens in English and Arabic" loading="lazy"></div>
           <div class="card-meta"><span>Bilingual fintech app · English and Arabic</span></div>

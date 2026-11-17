@@ -765,6 +765,17 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .nb-close h2{font-family:var(--head);font-weight:400;text-transform:uppercase;color:var(--oxblood);font-size:clamp(2rem,4.6vw,3.4rem);line-height:1;margin:0 0 14px;text-wrap:balance}
 .nb-close h2 em{font-style:normal;color:transparent;-webkit-text-stroke:1.4px var(--oxblood)}
 .nb-close p{color:var(--muted);margin:0 0 24px;max-width:52ch}
+
+/* action colour: maroon only for things you can act on */
+:root{--oxblood:#3A2622;--brick:#86604C;--clay:#4A302A;--cta:#7A2A22;--cta-h:#5C1E18;--cta-fg:#FFF8F2}
+.btn-solid,.links .btn-solid{background:var(--cta);border-color:var(--cta);color:var(--cta-fg)}
+.btn-solid:hover,.links .btn-solid:hover{background:var(--cta-h);border-color:var(--cta-h);color:var(--cta-fg)}
+.btn-line:hover,.links .btn:hover,.copy:hover{background:var(--oxblood);border-color:var(--oxblood);color:var(--cream)}
+.text-link{color:var(--cta);border-bottom-color:var(--cta)}
+.card-foot .go,.design .go,.next-case .k+h3~*,.crumbs a,.credit a{color:var(--cta)}
+.mail a{color:var(--cta);border-bottom-color:var(--cta)}
+.nav-links a.on,.nav-links a[aria-current]{color:var(--cta)}
+.btn:focus-visible,a:focus-visible,.tab:focus-visible{outline-color:var(--cta)}
 </style>
 </head>
 <body>
