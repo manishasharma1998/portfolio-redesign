@@ -779,6 +779,11 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .tab[aria-selected="true"]{background:var(--deep);color:var(--cream)}
 .nav-links a.on,.nav-links a[aria-current]{color:var(--oxblood)}
 .btn:focus-visible,a:focus-visible,.tab:focus-visible{outline-color:var(--deep)}
+.v-check-photo img{object-position:center 30%}
+.cro-badge{position:absolute;left:16px;right:16px;bottom:16px;display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;background:rgba(251,247,241,.94);border-radius:16px;padding:14px 18px;color:var(--oxblood)}
+.cro-badge b{font-family:var(--head);font-weight:400;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1}
+.cro-badge b span{color:var(--brick)}
+.cro-badge small{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -923,7 +928,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   var tabs=document.querySelectorAll('[role="tab"]');
   if(tabs.length){
     function show(id,focus){tabs.forEach(function(t){var on=t.getAttribute('aria-controls')===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on;if(on&&focus)t.focus()})}
-    function route(){var h=location.hash.slice(1),el=h&&document.getElementById(h);var inD=h==='designs'||(el&&el.closest&&el.closest('#designs'));show(inD?'designs':'case-studies');if(el&&h!=='designs'&&h!=='case-studies')setTimeout(function(){el.scrollIntoView()},30)}
+    function route(){var h=location.hash.slice(1),el=h&&document.getElementById(h);var inC=h==='case-studies'||(el&&el.closest&&el.closest('#case-studies'));show(inC?'case-studies':'designs');if(el&&h!=='designs'&&h!=='case-studies')setTimeout(function(){el.scrollIntoView()},30)}
     tabs.forEach(function(t,i){
       t.addEventListener('click',function(){var id=t.getAttribute('aria-controls');show(id);try{history.replaceState(null,'','#'+id)}catch(e){}});
       t.addEventListener('keydown',function(e){var k=e.key,n=null;if(k==='ArrowRight')n=tabs[(i+1)%tabs.length];if(k==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];if(n){e.preventDefault();n.click();n.focus()}});
