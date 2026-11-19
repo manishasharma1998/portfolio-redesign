@@ -769,13 +769,20 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 @media (prefers-reduced-motion:reduce){.sh-panel,.sh-tpill{animation:none}}
 .sh-banner{position:relative;height:clamp(210px,34dvh,260px);flex:none;background:radial-gradient(120% 90% at 50% 100%,#FFD6EC 0%,#F6EFE6 62%);overflow:hidden;border-bottom:1px solid var(--line)}
 .sh-stage{position:absolute;inset:0;cursor:pointer}
-.sh-poster{position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);transition:opacity .4s}
-.sh-av3d{position:absolute;inset:0}
-.sh-av3d canvas{display:block}
-.sh-ready .sh-poster,.sh-out .sh-poster{opacity:0}
-.sh-loadtxt{position:absolute;right:14px;bottom:12px;font-family:var(--display);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--oxblood);opacity:0;transition:opacity .3s}
-.sh-loading .sh-loadtxt{opacity:.8}
-.sh-out .sh-loadtxt{opacity:0}
+.sh-av3d{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-end;pointer-events:none}
+.sh-stage .sh-av3d{left:22%}
+.sh-fig{position:relative;height:100%;aspect-ratio:631/860;max-width:none;transform-origin:50% 100%;animation:shBreath 4.2s ease-in-out infinite}
+.sh-fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;max-width:none;opacity:0;transition:opacity .3s ease}
+.sh-fig img.on{opacity:1}
+@keyframes shBreath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-2px) scale(1.012)}}
+.sh-speaking .sh-fig{animation:shTalk 1.1s ease-in-out infinite}
+@keyframes shTalk{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-3px) rotate(-.7deg)}70%{transform:translateY(-1px) rotate(.6deg)}}
+.sh-pop .sh-fig{animation:shPop .55s cubic-bezier(.3,1.6,.6,1)}
+@keyframes shPop{50%{transform:translateY(-14px) scale(1.03)}}
+.sh-walking .sh-fig{animation:shStep .34s ease-in-out infinite alternate}
+@keyframes shStep{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(-9px) rotate(1.4deg)}}
+.sh-mirror .sh-fig{scale:-1 1}
+@media (prefers-reduced-motion:reduce){.sh-fig,.sh-speaking .sh-fig,.sh-walking .sh-fig,.sh-pop .sh-fig{animation:none}}
 .sh-badge{position:absolute;z-index:2;top:12px;left:14px;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--deep,#3D0012);font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.2em}
 .sh-badge i{width:6px;height:6px;border-radius:50%;background:var(--cta,#FF99D3);border:1px solid var(--deep,#3D0012)}
 .talking .sh-badge i{animation:shPulse 1s infinite}
@@ -788,7 +795,6 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .sh-name span{font-family:var(--display);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
 .sh-walker{position:fixed;left:0;top:0;z-index:72;pointer-events:none;transition-property:transform;transition-timing-function:linear;will-change:transform}
 .sh-walker[hidden]{display:none}
-.sh-walker .sh-av3d{position:absolute;inset:0}
 .sh-walker::after{content:"";position:absolute;left:25%;right:25%;bottom:-4px;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(61,0,18,.28),transparent);z-index:-1}
 .sh-wbub{position:absolute;top:2%;left:78%;width:min(260px,62vw);padding:12px 14px;border-radius:16px;border-top-left-radius:4px;background:var(--paper,#FFFDF9);border:1.5px solid var(--deep,#3D0012);color:var(--ink);font-size:14.5px;line-height:1.45;box-shadow:0 14px 30px -14px rgba(61,0,18,.45);animation:shIn .25s ease-out}
 .sh-wbub.sh-left{left:auto;right:78%;border-top-left-radius:16px;border-top-right-radius:4px}
@@ -1166,9 +1172,13 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 <div class="sh-panel" id="shPanel" role="dialog" aria-label="Chat with Shree, Manisha's assistant" hidden>
   <div class="sh-banner">
     <div class="sh-stage" id="shStage">
-      <img class="sh-poster" id="shPoster" src="shree-poster.webp" alt="" aria-hidden="true">
-      <div class="sh-av3d" id="shAv"></div>
-      <span class="sh-loadtxt" id="shLoad">Shree is getting ready…</span>
+      <div class="sh-av3d" id="shAv"><div class="sh-fig" id="shFig">
+        <img data-p="main" class="on" src="shree-main.webp" alt="Shree, Manisha's assistant">
+        <img data-p="wave" src="shree-wave.webp" alt="" aria-hidden="true">
+        <img data-p="point-a" src="shree-point-a.webp" alt="" aria-hidden="true">
+        <img data-p="point-b" src="shree-point-b.webp" alt="" aria-hidden="true">
+        <img data-p="talk" src="shree-talk.webp" alt="" aria-hidden="true">
+      </div></div>
     </div>
     <span class="sh-badge"><i></i>AI</span>
     <div class="sh-tools">
@@ -1196,40 +1206,25 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
 
   /* ================= 3D avatar ================= */
-  var A={ready:false,loading:null,head:null,failed:false,docked:true};
-  function webglOK(){try{var c=document.createElement('canvas');return !!(c.getContext('webgl2')||c.getContext('webgl'))}catch(e){return false}}
-  function loadAvatar(){
-    if(A.loading)return A.loading;
-    if(!webglOK()){A.failed=true;STG.classList.add('sh-fallback');return A.loading=Promise.resolve(false)}
-    STG.classList.add('sh-loading');
-    A.loading=import('./sh3-talkinghead.mjs').then(function(mod){
-      var dpr=window.devicePixelRatio||1;
-      var h=new mod.TalkingHead(AV,{ttsEndpoint:'',lipsyncModules:['en'],cameraView:'upper',cameraRotateEnable:false,cameraPanEnable:false,cameraZoomEnable:false,modelFPS:30,modelPixelRatio:Math.min(1,1.5/dpr),avatarMood:'happy',lightAmbientIntensity:2.2,lightDirectIntensity:28});
-      A.head=h;
-      return h.showAvatar({url:'shree.gltf',body:'F',avatarMood:'happy',lipsyncLang:'en',
-        retarget:{Hips:{y:0.03},Spine:{y:0.02},Spine1:{y:0.02,z:0.01},Spine2:{y:0.02,z:0.01},Neck:{z:0.02,y:0.01},Head:{z:0.02},LeftShoulder:{rx:-0.5},RightShoulder:{rx:-0.5},scaleToHipsLevel:1.0},
-        baseline:{headRotateX:-0.05,eyeBlinkLeft:0.15,eyeBlinkRight:0.15}},
-        function(ev){if(ev&&ev.lengthComputable)LOADT.textContent='Shree is getting ready… '+Math.round(ev.loaded/ev.total*100)+'%'});
-    }).then(function(){A.ready=true;STG.classList.remove('sh-loading');STG.classList.add('sh-ready');visibility();return true})
-      .catch(function(e){A.failed=true;STG.classList.remove('sh-loading');STG.classList.add('sh-fallback');try{console.warn('Shree 3D unavailable',e)}catch(_){}return false});
-    return A.loading;
+  var FIG=$('shFig'),POSE={},cur='main',poseT=null,popT=null;
+  FIG.querySelectorAll('img').forEach(function(i){POSE[i.dataset.p]=i});
+  var A={ready:true,docked:true,failed:false};
+  function loadAvatar(){return Promise.resolve(true)}
+  function visibility(){}
+  function pose(p,hold){if(!POSE[p])p='main';if(cur!==p){POSE[cur].classList.remove('on');POSE[p].classList.add('on');cur=p}clearTimeout(poseT);if(hold)poseT=setTimeout(function(){if(!talking&&!pinned)pose('main');else if(talking&&!pinned)pose('talk')},hold)}
+  function pop(){AV.classList.remove('sh-pop');void AV.offsetWidth;AV.classList.add('sh-pop');clearTimeout(popT);popT=setTimeout(function(){AV.classList.remove('sh-pop')},600)}
+  var pinned=false;
+  function gest(name,dir){
+    if(name==='wave'){pinned=false;pose('wave',2600);pop()}
+    else if(name==='point'){pinned=true;pose(dir==='left'?'point-a':'point-b')}
+    else if(name==='thumb'||name==='ok'||name==='index'||name==='talk'){pinned=false;pose('talk',2400);if(name==='thumb')pop()}
+    else if(name==='shrug'){pinned=false;pose('talk',2000)}
   }
-  function visibility(){if(!A.ready)return;var on=!P.hidden||!WK.hidden;try{if(on&&!A.head.isRunning)A.head.start();else if(!on&&A.head.isRunning)A.head.stop()}catch(e){}}
-  function gest(name,dir){if(!A.ready)return;var h=A.head;try{
-    if(name==='wave'){h.setMood('happy');h.playGesture('handup',2.4,true)}
-    else if(name==='point'){h.playGesture('side',3.2,dir==='left')}
-    else if(name==='thumb'){h.playGesture('thumbup',2.2,true)}
-    else if(name==='ok'){h.playGesture('ok',2.2,true)}
-    else if(name==='index'){h.playGesture('index',2.2,true)}
-    else if(name==='shrug'){h.playGesture('shrug',2)}
-  }catch(e){}}
-  function lips(text,rate){if(!A.ready)return;var h=A.head;try{
-    h.audioCtx.resume();var words=text.replace(/[“”"()]/g,'').split(/\s+/).filter(Boolean),t=0,wt=[],wd=[];
-    words.forEach(function(w){var d=Math.max(150,w.replace(/[^\w']/g,'').length*64)/(rate||1);wt.push(t);wd.push(d);t+=d+35;if(/[.,!?;:]$/.test(w))t+=/[.!?]$/.test(w)?300:160});
-    var sr=h.audioCtx.sampleRate,buf=h.audioCtx.createBuffer(1,Math.max(1,Math.ceil(sr*(t+250)/1000)),sr);
-    h.stopSpeaking();h.speakAudio({audio:buf,words:words,wtimes:wt,wdurations:wd},{lipsyncLang:'en'});
-  }catch(e){}}
-  function shutLips(){if(A.ready){try{A.head.stopSpeaking()}catch(e){}}}
+  function lips(){AV.classList.add('sh-speaking');if(cur==='main')pose('talk')}
+  function shutLips(){AV.classList.remove('sh-speaking');if(cur==='talk')pose('main')}
+  function unpin(){pinned=false;if(cur==='point-a'||cur==='point-b')pose(talking?'talk':'main')}
+  // little life between moments: an occasional glance pose while idle
+  setInterval(function(){if(talking||pinned||P.hidden&&WK.hidden)return;if(cur==='main'&&Math.random()<0.25){pose('talk',1400)}},6500);
 
   /* ================= voice ================= */
   function syncVoice(){V.setAttribute('aria-pressed',voice);V.setAttribute('aria-label',voice?'Mute Shree':'Unmute Shree');V.classList.toggle('off',!voice)}
@@ -1280,7 +1275,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 
   /* ================= walking on the page ================= */
   var wOut=false,wPos={x:0,y:0},wBack=null,wGen=0,slid=false,peeked=false;
-  function wSize(){return innerWidth<760?{w:140,h:255}:{w:210,h:380}}
+  function wSize(){return innerWidth<760?{w:150,h:204}:{w:236,h:322}}
   function setWalker(x,y,ms){wPos={x:x,y:y};WK.style.transitionDuration=(ms||0)+'ms';WK.style.transform='translate('+Math.round(x)+'px,'+Math.round(y)+'px)'}
   function startPos(){var z=wSize();if(!P.hidden){var r=STG.getBoundingClientRect();return{x:r.left+r.width/2-z.w/2,y:Math.max(8,r.bottom-z.h)}}return{x:innerWidth+20,y:innerHeight-z.h-70}}
   function exitPos(){var z=wSize();return{x:innerWidth+40,y:Math.min(innerHeight-z.h-70,Math.max(70,wPos.y))}}
@@ -1289,9 +1284,9 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   function walkTo(x,y,cb){var h=A.head,dx=x-wPos.x,dist=Math.hypot(dx,y-wPos.y),g=wGen;
     if(dist<10){cb&&cb();return}
     var dur=Math.min(2800,600+dist*2.4);
-    try{h.setView('full',{cameraRotateY:dx>0?0.95:-0.95});h.playAnimation('shree-walk.fbx',null,dur/1000+0.5)}catch(e){}
+    unpin();WK.classList.toggle('sh-mirror',dx<0);
     WK.classList.add('sh-walking');setWalker(x,y,dur);
-    setTimeout(function(){if(g!==wGen)return;WK.classList.remove('sh-walking');try{h.stopAnimation();h.setView('full',{cameraRotateY:0})}catch(e){}setTimeout(function(){if(g===wGen&&cb)cb()},350)},dur)}
+    setTimeout(function(){if(g!==wGen)return;WK.classList.remove('sh-walking');WK.classList.remove('sh-mirror');setTimeout(function(){if(g===wGen&&cb)cb()},350)},dur)}
   function goOut(){if(wOut)return;var z=wSize(),s=startPos();WK.style.width=z.w+'px';WK.style.height=z.h+'px';setWalker(s.x,s.y,0);WK.hidden=false;WK.appendChild(AV);A.docked=false;STG.classList.add('sh-out');wOut=true;visibility();try{A.head.setView('full');A.head.onResize()}catch(e){}}
   function textRect(t){var r=t.getBoundingClientRect();if(/^H[1-3]$/.test(t.tagName)){try{var rg=document.createRange();rg.selectNodeContents(t);var q=rg.getBoundingClientRect();if(q.width>20)return q}catch(e){}}return r}
   function spot(t){var z=wSize(),r=textRect(t),pl=P.hidden?innerWidth:P.getBoundingClientRect().left,pr=P.hidden?0:P.getBoundingClientRect().right,x,side;
@@ -1306,7 +1301,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     if(innerWidth>=760&&covers(t)&&!slid){slide(true);setTimeout(function(){if(g===wGen)stepOut(t,cb)},540);return}
     goOut();var s=spot(t);
     walkTo(s.x,s.y,function(){if(g!==wGen)return;gest('point',s.side);try{A.head.lookAt(s.cx,s.cy,1800)}catch(e){}cb&&cb(s);if(!tourOn)wBack=setTimeout(stepIn,5600)})}
-  function stepIn(after){clearTimeout(wBack);if(!wOut){after&&after();return}var g=++wGen;bubble(null);
+  function stepIn(after){clearTimeout(wBack);unpin();if(!wOut){after&&after();return}var g=++wGen;bubble(null);
     var was=slid;if(slid)slide(false);
     setTimeout(function(){if(g!==wGen)return;var dest=(P.hidden&&!peeked)?exitPos():startPos();if(peeked){dest=exitPos()}
       walkTo(dest.x,dest.y,function(){if(g!==wGen)return;WK.hidden=true;STG.appendChild(AV);A.docked=true;STG.classList.remove('sh-out');wOut=false;
