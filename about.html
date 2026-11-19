@@ -803,6 +803,18 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .sh-typing i{width:6px;height:6px;border-radius:50%;background:var(--oxblood);animation:shDot 1s infinite}
 .sh-typing i:nth-child(2){animation-delay:.15s}.sh-typing i:nth-child(3){animation-delay:.3s}
 @keyframes shDot{50%{transform:translateY(-4px);opacity:.5}}
+.sh-walker{position:fixed;left:0;top:0;z-index:72;width:230px;pointer-events:none;transition-property:transform;transition-timing-function:cubic-bezier(.45,.05,.25,1);will-change:transform}
+.sh-walker[hidden]{display:none}
+.sh-walker video{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent);transition:transform .3s}
+.sh-walker.sh-flip video{transform:scaleX(-1)}
+.sh-walker::after{content:"";position:absolute;left:22%;right:22%;bottom:4%;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(61,0,18,.3),transparent);z-index:-1}
+.sh-walker.sh-walking video{animation:shWalk .3s ease-in-out infinite alternate}
+@keyframes shWalk{from{translate:0 0;rotate:-1.2deg}to{translate:0 -7px;rotate:1.2deg}}
+.sh-walker.sh-safari video{background:#F6EFE6;border-radius:18px;-webkit-mask-image:radial-gradient(70% 80% at 50% 55%,#000 60%,transparent 100%);mask-image:radial-gradient(70% 80% at 50% 55%,#000 60%,transparent 100%)}
+.sh-stage{transition:opacity .25s}
+.sh-panel{transition:transform .5s cubic-bezier(.45,.05,.25,1)}
+.sh-stage.sh-out{opacity:0}
+@media (max-width:759px){.sh-walker{width:150px}}
 .sh-tourbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:var(--paper);flex:none}
 .sh-tourbar[hidden]{display:none}
 .sh-tstep{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);margin-right:auto}
@@ -1151,6 +1163,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   <span class="sh-hint">Ask Shree</span>
 </button>
 <div class="sh-backdrop" id="shBackdrop" hidden></div>
+<div class="sh-walker" id="shWalker" hidden aria-hidden="true"><video id="shWVid" muted playsinline preload="auto"></video></div>
 <div class="sh-panel" id="shPanel" role="dialog" aria-label="Chat with Shree, Manisha's assistant" hidden>
   <div class="sh-banner">
     <div class="sh-stage" id="shStage"><video class="sh-video" id="shVid" muted playsinline preload="auto" aria-hidden="true"></video></div>
@@ -1184,6 +1197,30 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   function clip(n,lp){var c=CL[n];cur=n;loop=!!lp;end=c[1];try{VID.currentTime=c[0];var pr=VID.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}
   VID.addEventListener('timeupdate',function(){if(VID.currentTime>=end-0.06){if(talking){clip(cur==='talk'?'talk2':'talk')}else if(loop){clip(cur,true)}else{clip('idle',true)}}});
   function react(n){STG.classList.remove('sh-hop','sh-nod');void STG.offsetWidth;if(n)STG.classList.add(n)}
+  /* ---- walker: Shree steps out of the popup onto the page ---- */
+  var WK=$('shWalker'),WV=$('shWVid');WV.src=VID.src;if(safari)WK.classList.add('sh-safari');
+  var wcur='idle',wend=7.95,wloop=true,wOut=false,wBack=null,wPos={x:0,y:0};
+  function wclip(n,lp){var c=CL[n];wcur=n;wloop=!!lp;wend=c[1];try{WV.currentTime=c[0];var pr=WV.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}
+  WV.addEventListener('timeupdate',function(){if(WV.currentTime>=wend-0.06){if(talking){wclip(wcur==='talk'?'talk2':'talk')}else if(wloop){wclip(wcur,true)}else{wclip('idle',true)}}});
+  function wSize(){var w=innerWidth<760?150:230;return{w:w,h:Math.round(w*400/578)}}
+  function wMove(x,y,ms,cb){var d=Math.hypot(x-wPos.x,y-wPos.y);wPos={x:x,y:y};WK.style.transitionDuration=(ms==null?Math.min(1500,400+d*1.4):ms)+'ms';if(d>8&&ms!==0)WK.classList.add('sh-walking');WK.style.transform='translate('+Math.round(x)+'px,'+Math.round(y)+'px)';setTimeout(function(){WK.classList.remove('sh-walking');cb&&cb()},ms===0?0:Math.min(1500,400+d*1.4))}
+  function wHome(){var z=wSize();if(!P.hidden){var r=STG.getBoundingClientRect();return{x:r.left+r.width*0.6-z.w/2,y:r.bottom-z.h}}return{x:innerWidth-z.w-12,y:innerHeight-z.h}}
+  var slid=false;
+  function covers(t){if(P.hidden)return false;var r=t.getBoundingClientRect(),pr=P.getBoundingClientRect();if(slid){pr={left:pr.left,right:pr.right,top:pr.top,bottom:pr.bottom}}return r.right>pr.left-16&&r.left<pr.right&&r.bottom>pr.top&&r.top<pr.bottom}
+  function slide(on){if(on===slid||P.hidden)return 0;slid=on;var pr=P.getBoundingClientRect();P.style.transform=on?'translateX('+(-(pr.left-12))+'px)':'';return 520}
+  var wGen=0;
+  function stepOut(t){if(reduce)return;clearTimeout(wBack);wGen++;if(innerWidth>=760){var cov=covers(t);if(cov||slid){var need=cov&&!slid?true:(slid&&!cov?slid:slid);}if(cov&&!slid){if(!wOut){slide(true);setTimeout(function(){stepOut(t)},540);return}slide(true);setTimeout(function(){stepOut(t)},540);return}}
+    var z=wSize();
+    if(!wOut){var h=wHome();WK.hidden=false;wMove(h.x,h.y,0);WK.classList.toggle('sh-flip',true);wclip('idle',true);STG.classList.add('sh-out');wOut=true;void WK.offsetWidth}
+    var r=t.getBoundingClientRect(),pr=P.hidden?{left:innerWidth}:P.getBoundingClientRect();
+    var left=r.left-z.w*0.78,right=r.right-z.w*0.22,x,flip;
+    var pl=P.hidden?innerWidth:pr.left,prr=P.hidden?0:pr.right,wide=r.width>innerWidth*0.45;if(wide){if(slid||(!P.hidden&&pl<innerWidth/2)){x=Math.min(innerWidth-z.w-8,prr+28);flip=false}else{x=Math.max(8,Math.min(r.left+24,pl-z.w-8));flip=false}}else if(left>=4&&!(left<prr&&left+z.w>pl)){x=left;flip=false}else if(right+z.w<=pr.left-4){x=right;flip=true}else{x=Math.max(4,Math.min(pr.left-z.w-4,r.left+r.width/2-z.w/2));flip=x+z.w/2>r.left+r.width/2}
+    var y=Math.max(70,Math.min(innerHeight-z.h-4,r.top+Math.min(r.height,260)/2-z.h*0.45));
+    WK.classList.toggle('sh-flip',x+z.w/2>wPos.x+z.w/2);
+    wMove(x,y,null,function(){WK.classList.toggle('sh-flip',flip);wclip('point');ST.textContent='Showing you…';wBack=setTimeout(stepIn,tourOn?600000:5200)})}
+  function stepIn(){clearTimeout(wBack);if(!wOut)return;var g=wGen;if(slid){slide(false);setTimeout(function(){if(g===wGen)stepIn2(g)},540);return}stepIn2(g)}
+  function stepIn2(g){var h=wHome();WK.classList.toggle('sh-flip',h.x<wPos.x);wMove(h.x,h.y,null,function(){if(g!==wGen)return;WK.hidden=true;STG.classList.remove('sh-out');wOut=false;clip('wave');if(!talking)ST.textContent='Manisha’s AI assistant'})}
+  addEventListener('scroll',function(){if(wOut&&!tourOn&&Date.now()-hlAt>2500){clearTimeout(wBack);wBack=setTimeout(stepIn,900)}},{passive:true});
   STG.addEventListener('click',function(){react('sh-hop');clip('wave');say('Hi! Ask me anything about Manisha.')});
   P.addEventListener('pointermove',function(e){var r=STG.getBoundingClientRect();STG.classList.toggle('sh-face',e.clientX<r.left+r.width/2)});
   /* ---- voice ---- */
@@ -1212,8 +1249,9 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   function match(t){t=t.toLowerCase();var best=null,score=0;D.faq.forEach(function(f){var s=0;f.keywords.forEach(function(k){if(t.indexOf(k)>-1)s+=k.length});if(s>score){score=s;best=f}});return best}
   /* ---- commands: move the page ---- */
   var page=(location.pathname.split('/').pop()||'index').replace('.html','')||'index';
-  function peek(){if(innerWidth>=760||P.hidden)return;P.hidden=true;B.hidden=true;document.documentElement.classList.remove('sh-open');setTimeout(function(){P.hidden=false;B.hidden=false;document.documentElement.classList.add('sh-open');clip('idle',true)},3800)}
-  function highlight(t){peek();document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});setTimeout(function(){t.classList.add('sh-hl');setTimeout(function(){t.classList.remove('sh-hl')},4200)},reduce?0:450)}
+  function peek(){if(innerWidth>=760||P.hidden)return;P.hidden=true;B.hidden=true;document.documentElement.classList.remove('sh-open');setTimeout(function(){if(wOut){WK.hidden=true;STG.classList.remove('sh-out');wOut=false;clearTimeout(wBack)}P.hidden=false;B.hidden=false;document.documentElement.classList.add('sh-open');clip('idle',true)},tourOn?6500:4600)}
+  var hlAt=0;
+  function highlight(t){hlAt=Date.now();peek();document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});setTimeout(function(){t.classList.add('sh-hl');stepOut(t);setTimeout(function(){t.classList.remove('sh-hl')},tourOn?60000:4800)},reduce?0:650)}
   function travel(url,line){try{sessionStorage.setItem('sh-arrive',line||'Here we are.')}catch(e){}clip('point');setTimeout(function(){location.href=url},reduce?0:1100)}
   function show(sel,url,line){var t=sel&&document.querySelector(sel);if(t){highlight(t);say(line,'point');return}say(line,'point');travel(url,line)}
   var DZ=[['palmway','palmway|car rental','Palmway, a car rental app with a Miami night drive feel.'],['tarnhollow','tarnhollow|tarn|game','Tarnhollow, her game interface for a Nordic folklore RPG.'],['daftar','daftar|wallet|pay later|pay-later','Daftar, a bilingual wallet and pay-later app in English and Arabic.'],['elane-living','elane|furniture','Elane Living, a luxury furniture website.'],['nuvra','nuvra|saas','Nuvra, a SaaS landing page in Arabic, right to left.'],['makeup-academy','makeup','The makeup academy website redesign.'],['travel-booking','travel','A travel booking website.'],['blablacar','blablacar|bla bla|carpool','A heuristic evaluation of BlaBlaCar.'],['emailer','emailer|email design|newsletter','Her emailer designs.']];
@@ -1262,7 +1300,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     if(st.p!=='*'&&st.p!==page){stop();clip('point');try{sessionStorage.setItem('sh-arrive','__tour__')}catch(e){}setTimeout(function(){location.href=(st.p==='index'?'index.html':st.p+'.html')},reduce?0:900);return}
     var t=document.querySelector(st.s);if(t)highlight(t);if(st.g==='wave')react('sh-hop');add('bot',st.t);
     speak(st.t,st.g,0,function(){if(tourOn&&tourI===i)tourTimer=setTimeout(function(){tourGo(i+1)},1400)})}
-  function tourEnd(done){clearTimeout(tourTimer);tourOn=false;tourSave(null);TB.hidden=true;S.hidden=false;if(done){react('sh-hop')}else{stop();add('bot','No problem, tour ended. Ask me anything.')}}
+  function tourEnd(done){clearTimeout(tourTimer);document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});setTimeout(stepIn,done?2500:0);tourOn=false;tourSave(null);TB.hidden=true;S.hidden=false;if(done){react('sh-hop')}else{stop();add('bot','No problem, tour ended. Ask me anything.')}}
   $('shTourNext').addEventListener('click',function(){stop();tourGo(tourI+1)});
   $('shTourStop').addEventListener('click',function(){tourEnd(false)});
   function faq(f){add('bot',f.a,f.links);if(f.fx)react(f.fx);speak(f.a,f.gesture||'talk');for(var i=0;i<(f.targets||[]).length;i++){var t=document.querySelector(f.targets[i]);if(t&&t.offsetParent!==null){highlight(t);break}}}
@@ -1273,7 +1311,7 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   function chips(){S.innerHTML='';['Give me a tour','Show me Daftar','Show XR work','Say hello'].concat(D.faq.slice(0,4).map(function(f){return f.q})).forEach(function(q){var x=el('button','sh-chip',q);x.type='button';x.addEventListener('click',function(){ask(q,D.faq.some(function(f){return f.q===q}))});S.appendChild(x)})}
   function greet(arrive){started=true;chips();if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}tourGo(ti);return}if(arrive){add('bot',arrive);clip('point');setTimeout(function(){clip('idle',true)},1800);var h=location.hash&&document.querySelector(location.hash);if(h)highlight(h);return}typing(function(){say(D.greeting,'wave')})}
   function open(arrive){P.hidden=false;B.hidden=false;L.setAttribute('aria-expanded','true');document.documentElement.classList.add('sh-open');if(!started)greet(arrive);else clip('wave');setTimeout(function(){I.focus({preventScroll:true})},60)}
-  function close(){if(tourOn){clearTimeout(tourTimer);tourOn=false;tourSave(null);TB.hidden=true}P.hidden=true;B.hidden=true;L.setAttribute('aria-expanded','false');document.documentElement.classList.remove('sh-open');stop();try{VID.pause()}catch(e){}try{sessionStorage.setItem('chat-guide-dismissed','1')}catch(e){}L.focus({preventScroll:true})}
+  function close(){if(slid){slid=false;P.style.transform=''}if(wOut){clearTimeout(wBack);WK.hidden=true;STG.classList.remove('sh-out');wOut=false}if(tourOn){clearTimeout(tourTimer);tourOn=false;tourSave(null);TB.hidden=true}P.hidden=true;B.hidden=true;L.setAttribute('aria-expanded','false');document.documentElement.classList.remove('sh-open');stop();try{VID.pause()}catch(e){}try{sessionStorage.setItem('chat-guide-dismissed','1')}catch(e){}L.focus({preventScroll:true})}
   L.addEventListener('click',function(){P.hidden?open():close()});
   $('shClose').addEventListener('click',close);B.addEventListener('click',close);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!P.hidden)close()});
