@@ -1420,10 +1420,9 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   var arrive=null;try{arrive=sessionStorage.getItem('sh-arrive');sessionStorage.removeItem('sh-arrive')}catch(e){}
   if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}started=true;chips();tourOn=true;tourI=ti;tourUI();loadAvatar().then(function(){setTimeout(function(){tourGo(ti)},300)});return}
   if(arrive){setTimeout(function(){open(arrive)},500);return}
-  // open on its own after ~10s of active scrolling, once per visit
-  var dismissed=false;try{dismissed=!!sessionStorage.getItem('chat-guide-dismissed')}catch(e){}
-  if(!dismissed){var acc=0,last=0,lastScroll=0,t0=performance.now();addEventListener('scroll',function(){lastScroll=performance.now()},{passive:true});
-    (function tick(now){if(!P.hidden||started||tourOn)return;if(last&&now-lastScroll<1500)acc+=now-last;last=now;if(acc>=10000){open();return}requestAnimationFrame(tick)})(t0)}
+  // open on its own 5 seconds after someone arrives, once per visit (not again after they close her)
+  var dismissed=false,seen=false;try{dismissed=!!sessionStorage.getItem('chat-guide-dismissed');seen=!!sessionStorage.getItem('sh-auto-opened')}catch(e){}
+  if(!dismissed&&!seen){setTimeout(function(){if(!P.hidden||started||tourOn)return;try{sessionStorage.setItem('sh-auto-opened','1')}catch(e){}open()},5000)}
 })();
 </script>
 </body>
