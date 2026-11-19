@@ -1312,12 +1312,13 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   ['pointerdown','keydown','touchstart'].forEach(function(ev){addEventListener(ev,function(){if(pendingSpeak){var p=pendingSpeak;pendingSpeak=null;setTimeout(function(){speak(p[0],p[1],p[2])},60)}},{passive:true,capture:true})});
   function speak(t,g,cb,tries){
     if(cb!==undefined)afterSpeak=cb;
-    if(voice&&'speechSynthesis' in window&&!activated()){pendingSpeak=[t,g,afterSpeak];gest(g);return}
-    if(voice&&'speechSynthesis' in window&&!voicesNow().length&&(tries||0)<8){setTimeout(function(){speak(t,g,undefined,(tries||0)+1)},150);return}
+    var silent=voice&&'speechSynthesis' in window&&!activated();
+    if(silent&&!tourOn){pendingSpeak=[t,g,afterSpeak];gest(g);return}
+    if(!silent&&voice&&'speechSynthesis' in window&&!voicesNow().length&&(tries||0)<8){setTimeout(function(){speak(t,g,undefined,(tries||0)+1)},150);return}
     var gen=++speakGen,myCb=afterSpeak;afterSpeak=null;
     function done(){if(gen!==speakGen)return;talking=false;shutLips();idleStatus();if(myCb)myCb()}
     gest(g);
-    if(!voice||!('speechSynthesis' in window)){talking=true;lips(t,1);setTimeout(done,Math.max(2500,t.length*62));return}
+    if(silent||!voice||!('speechSynthesis' in window)){talking=true;lips(t,1);setTimeout(done,Math.max(2500,t.length*62));return}
     try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang='en-IN';u.rate=1;u.pitch=1.1;
       var began=false;u.onstart=function(){began=true;lips(t,1)};u.onboundary=function(ev){if(ev.name==='word'||!ev.name)wordBreak()};u.onend=u.onerror=done;
       ST.textContent='Speaking…';P.classList.add('talking');talking=true;speechSynthesis.speak(u);
@@ -1493,9 +1494,9 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   var arrive=null;try{arrive=sessionStorage.getItem('sh-arrive');sessionStorage.removeItem('sh-arrive')}catch(e){}
   if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}started=true;chips();tourOn=true;tourI=ti;tourUI();loadAvatar().then(function(){setTimeout(function(){tourGo(ti)},300)});return}
   if(arrive){setTimeout(function(){open(arrive)},500);return}
-  // open on its own 5 seconds after someone arrives, once per visit (not again after they close her)
+  // start the website tour on its own 2 seconds after someone arrives, once per visit
   var dismissed=false,seen=false;try{dismissed=!!sessionStorage.getItem('chat-guide-dismissed');seen=!!sessionStorage.getItem('sh-auto-opened')}catch(e){}
-  if(!dismissed&&!seen){setTimeout(function(){if(!P.hidden||started||tourOn)return;try{sessionStorage.setItem('sh-auto-opened','1')}catch(e){}open()},5000)}
+  if(!dismissed&&!seen){setTimeout(function(){if(!P.hidden||started||tourOn)return;try{sessionStorage.setItem('sh-auto-opened','1')}catch(e){}started=true;chips();tourStart()},2000)}
 })();
 </script>
 </body>
