@@ -754,28 +754,28 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .sh-launch{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:70;display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 20px 0 17px;border-radius:999px;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;box-shadow:0 14px 40px -12px rgba(61,0,18,.45);transition:transform .2s}
 .sh-launch:hover{transform:translateY(-2px)}
 @media (max-width:560px){.sh-launch{width:56px;padding:0;justify-content:center}.sh-hint{display:none}}
-.sh-open .sh-launch{display:none}
+.sh-open .sh-launch,.sh-touring .sh-launch{display:none}
+.sh-tpill{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:73;display:flex;align-items:center;gap:8px;padding:7px 7px 7px 16px;border-radius:999px;border:1.5px solid var(--deep,#3D0012);background:var(--paper,#FFFDF9);box-shadow:0 14px 40px -12px rgba(61,0,18,.45);animation:shIn .25s ease-out}
+.sh-tpill[hidden]{display:none}
+.sh-tlive{width:9px;height:9px;border-radius:50%;background:var(--cta,#FF99D3);border:1.5px solid var(--deep,#3D0012);animation:shPulse 1.2s infinite}
+.sh-tstep{font-family:var(--display);font-weight:700;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);margin-right:6px;white-space:nowrap}
+.sh-tbtn{height:40px;padding:0 16px;border-radius:999px;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);font:700 13px var(--body);cursor:pointer;white-space:nowrap}
+.sh-tbtn.ghost{background:transparent;color:var(--deep,#3D0012)}
+@media (max-width:420px){.sh-tstep{display:none}.sh-tpill{padding-left:10px}}
 .sh-backdrop{position:fixed;inset:0;z-index:65;background:rgba(42,13,16,.08)}
-.sh-panel{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;width:min(24rem,calc(100vw - 24px));height:min(640px,calc(100dvh - 24px));display:flex;flex-direction:column;overflow:hidden;border-radius:22px;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 90px -20px rgba(42,13,16,.55);animation:shIn .22s ease-out}
+.sh-panel{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;width:min(24rem,calc(100vw - 24px));height:min(640px,calc(100dvh - 24px));display:flex;flex-direction:column;overflow:hidden;border-radius:22px;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 90px -20px rgba(42,13,16,.55);animation:shIn .22s ease-out;transition:transform .5s cubic-bezier(.45,.05,.25,1)}
 .sh-panel[hidden],.sh-backdrop[hidden]{display:none}
 @keyframes shIn{from{opacity:0;transform:translateY(14px) scale(.97)}}
-@media (prefers-reduced-motion:reduce){.sh-panel{animation:none}}
-.sh-banner{position:relative;height:clamp(200px,32dvh,250px);flex:none;background:radial-gradient(120% 90% at 50% 100%,#FFD6EC 0%,#F6EFE6 62%);overflow:hidden;border-bottom:1px solid var(--line)}
-.sh-stage{position:absolute;left:0;right:0;bottom:0;height:100%;cursor:pointer;transform-origin:50% 100%}
-.sh-stage.sh-safari{background:#F6EFE6;left:12%;right:12%;-webkit-mask-image:radial-gradient(75% 85% at 50% 60%,#000 62%,transparent 100%);mask-image:radial-gradient(75% 85% at 50% 60%,#000 62%,transparent 100%)}
-.sh-video{position:absolute;left:60%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);display:block;transition:transform .35s ease}
-.sh-face .sh-video{transform:translateX(-50%) scaleX(-1)}
-.sh-stage::after{content:"";position:absolute;left:30%;right:30%;bottom:-8px;height:18px;border-radius:50%;background:radial-gradient(closest-side,rgba(61,0,18,.25),transparent)}
-.sh-hop{animation:shHop .55s cubic-bezier(.3,1.6,.6,1)}
-@keyframes shHop{50%{transform:translateY(-22px)}}
-.sh-nod{animation:shNod .6s ease-in-out}
-@keyframes shNod{30%{transform:rotate(-2deg) translateY(3px)}70%{transform:rotate(2deg) translateY(3px)}}
-.sh-banner::after{content:"";position:absolute;left:0;right:0;bottom:0;height:64px;background:linear-gradient(to top,rgba(246,239,230,.96),transparent);pointer-events:none}
-.sh-hl{outline:3px solid var(--cta,#FF99D3);outline-offset:6px;border-radius:14px;transition:outline-offset .3s}
-.sh-mic{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--cream);color:var(--oxblood);display:grid;place-items:center;cursor:pointer}
-.sh-mic[hidden]{display:none}
-.sh-mic.rec{background:var(--cta,#FF99D3);border-color:var(--deep,#3D0012);animation:shPulse 1s infinite}
-@media (prefers-reduced-motion:reduce){.sh-hop,.sh-nod{animation:none}}
+@media (prefers-reduced-motion:reduce){.sh-panel,.sh-tpill{animation:none}}
+.sh-banner{position:relative;height:clamp(210px,34dvh,260px);flex:none;background:radial-gradient(120% 90% at 50% 100%,#FFD6EC 0%,#F6EFE6 62%);overflow:hidden;border-bottom:1px solid var(--line)}
+.sh-stage{position:absolute;inset:0;cursor:pointer}
+.sh-poster{position:absolute;left:50%;bottom:0;height:100%;width:auto;max-width:none;transform:translateX(-50%);transition:opacity .4s}
+.sh-av3d{position:absolute;inset:0}
+.sh-av3d canvas{display:block}
+.sh-ready .sh-poster,.sh-out .sh-poster{opacity:0}
+.sh-loadtxt{position:absolute;right:14px;bottom:12px;font-family:var(--display);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--oxblood);opacity:0;transition:opacity .3s}
+.sh-loading .sh-loadtxt{opacity:.8}
+.sh-out .sh-loadtxt{opacity:0}
 .sh-badge{position:absolute;z-index:2;top:12px;left:14px;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--deep,#3D0012);font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.2em}
 .sh-badge i{width:6px;height:6px;border-radius:50%;background:var(--cta,#FF99D3);border:1px solid var(--deep,#3D0012)}
 .talking .sh-badge i{animation:shPulse 1s infinite}
@@ -783,9 +783,17 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .sh-tools{position:absolute;z-index:2;top:10px;right:12px;display:flex;gap:8px}
 .sh-ico{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.85);color:var(--deep,#3D0012);cursor:pointer}
 .sh-ico .sh-off{display:none}.sh-ico.off .sh-off{display:inline}
-.sh-name{position:absolute;z-index:2;left:16px;bottom:12px;color:var(--deep,#3D0012)}
+.sh-name{position:absolute;z-index:2;left:16px;bottom:12px;color:var(--deep,#3D0012);pointer-events:none}
 .sh-name b{display:block;font-family:var(--head);font-weight:400;font-size:26px;letter-spacing:.02em;text-transform:uppercase;line-height:1}
 .sh-name span{font-family:var(--display);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.sh-walker{position:fixed;left:0;top:0;z-index:72;pointer-events:none;transition-property:transform;transition-timing-function:linear;will-change:transform}
+.sh-walker[hidden]{display:none}
+.sh-walker .sh-av3d{position:absolute;inset:0}
+.sh-walker::after{content:"";position:absolute;left:25%;right:25%;bottom:-4px;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(61,0,18,.28),transparent);z-index:-1}
+.sh-wbub{position:absolute;top:2%;left:78%;width:min(260px,62vw);padding:12px 14px;border-radius:16px;border-top-left-radius:4px;background:var(--paper,#FFFDF9);border:1.5px solid var(--deep,#3D0012);color:var(--ink);font-size:14.5px;line-height:1.45;box-shadow:0 14px 30px -14px rgba(61,0,18,.45);animation:shIn .25s ease-out}
+.sh-wbub.sh-left{left:auto;right:78%;border-top-left-radius:16px;border-top-right-radius:4px}
+.sh-wbub[hidden]{display:none}
+.sh-hl{outline:3px solid var(--cta,#FF99D3);outline-offset:6px;border-radius:14px;transition:outline-offset .3s}
 .sh-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--cream)}
 .sh-row{display:flex;align-items:flex-end;gap:8px}
 .sh-row.user{justify-content:flex-end}
@@ -803,30 +811,16 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
 .sh-typing i{width:6px;height:6px;border-radius:50%;background:var(--oxblood);animation:shDot 1s infinite}
 .sh-typing i:nth-child(2){animation-delay:.15s}.sh-typing i:nth-child(3){animation-delay:.3s}
 @keyframes shDot{50%{transform:translateY(-4px);opacity:.5}}
-.sh-walker{position:fixed;left:0;top:0;z-index:72;width:230px;pointer-events:none;transition-property:transform;transition-timing-function:cubic-bezier(.45,.05,.25,1);will-change:transform}
-.sh-walker[hidden]{display:none}
-.sh-walker video{display:block;width:100%;height:auto;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent);mask-image:linear-gradient(to bottom,#000 80%,transparent);transition:transform .3s}
-.sh-walker.sh-flip video{transform:scaleX(-1)}
-.sh-walker::after{content:"";position:absolute;left:22%;right:22%;bottom:4%;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(61,0,18,.3),transparent);z-index:-1}
-.sh-walker.sh-walking video{animation:shWalk .3s ease-in-out infinite alternate}
-@keyframes shWalk{from{translate:0 0;rotate:-1.2deg}to{translate:0 -7px;rotate:1.2deg}}
-.sh-walker.sh-safari video{background:#F6EFE6;border-radius:18px;-webkit-mask-image:radial-gradient(70% 80% at 50% 55%,#000 60%,transparent 100%);mask-image:radial-gradient(70% 80% at 50% 55%,#000 60%,transparent 100%)}
-.sh-stage{transition:opacity .25s}
-.sh-panel{transition:transform .5s cubic-bezier(.45,.05,.25,1)}
-.sh-stage.sh-out{opacity:0}
-@media (max-width:759px){.sh-walker{width:150px}}
-.sh-tourbar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:var(--paper);flex:none}
-.sh-tourbar[hidden]{display:none}
-.sh-tstep{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);margin-right:auto}
-.sh-tbtn{height:34px;padding:0 14px;border-radius:999px;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);font:600 13px var(--body);cursor:pointer}
-.sh-tbtn.ghost{background:transparent;border-color:var(--line);color:var(--oxblood)}
 .sh-sugg{display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-top:1px solid var(--line);background:var(--paper);scrollbar-width:none;flex:none}
 .sh-sugg .sh-chip{white-space:nowrap;flex:none}
 .sh-sugg[hidden]{display:none}
 .sh-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--paper);flex:none}
 .sh-form input{flex:1;min-width:0;height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--cream);font:inherit;font-size:15px;color:var(--ink)}
 .sh-form input:focus{outline:2px solid var(--deep,#3D0012);outline-offset:1px}
-.sh-form button{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);display:grid;place-items:center;cursor:pointer}
+.sh-form button[type=submit]{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);display:grid;place-items:center;cursor:pointer}
+.sh-mic{flex:none;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--deep,#3D0012);background:var(--cta,#FF99D3);color:var(--deep,#3D0012);display:grid;place-items:center;cursor:pointer}
+.sh-mic[hidden]{display:none}
+.sh-mic.rec{animation:shPulse 1s infinite}
 
 .nb-hero-mark{display:flex;align-items:center;gap:12px;margin:6px 0 18px}
 .nb-hero-mark .nb-mark{width:44px;height:44px}
@@ -1127,11 +1121,20 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <span class="sh-hint">Ask Shree</span>
 </button>
+<div class="sh-tpill" id="shTPill" hidden role="group" aria-label="Website tour controls">
+  <span class="sh-tlive" aria-hidden="true"></span><span class="sh-tstep" id="shTStep">Tour 1 of 10</span>
+  <button type="button" class="sh-tbtn" id="shTNext">Next</button>
+  <button type="button" class="sh-tbtn ghost" id="shTEnd">End tour</button>
+</div>
 <div class="sh-backdrop" id="shBackdrop" hidden></div>
-<div class="sh-walker" id="shWalker" hidden aria-hidden="true"><video id="shWVid" muted playsinline preload="auto"></video></div>
+<div class="sh-walker" id="shWalker" hidden><div class="sh-wbub" id="shWBub" hidden></div></div>
 <div class="sh-panel" id="shPanel" role="dialog" aria-label="Chat with Shree, Manisha's assistant" hidden>
   <div class="sh-banner">
-    <div class="sh-stage" id="shStage"><video class="sh-video" id="shVid" muted playsinline preload="auto" aria-hidden="true"></video></div>
+    <div class="sh-stage" id="shStage">
+      <img class="sh-poster" id="shPoster" src="shree-poster.webp" alt="" aria-hidden="true">
+      <div class="sh-av3d" id="shAv"></div>
+      <span class="sh-loadtxt" id="shLoad">Shree is getting ready…</span>
+    </div>
     <span class="sh-badge"><i></i>AI</span>
     <div class="sh-tools">
       <button type="button" class="sh-ico" id="shVoice" aria-pressed="true" aria-label="Mute Shree"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path class="sh-off" d="M4 4l16 16" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
@@ -1140,7 +1143,6 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     <div class="sh-name"><b>Shree</b><span id="shStatus">Manisha’s AI assistant</span></div>
   </div>
   <div class="sh-msgs" id="shMsgs" aria-live="polite"></div>
-  <div class="sh-tourbar" id="shTour" hidden><span class="sh-tstep" id="shTourStep"></span><span class="sh-tdots" id="shTourDots"></span><button type="button" class="sh-tbtn" id="shTourNext">Next</button><button type="button" class="sh-tbtn ghost" id="shTourStop">End tour</button></div>
   <div class="sh-sugg" id="shSugg"></div>
   <form class="sh-form" id="shForm" autocomplete="off">
     <button type="button" class="sh-mic" id="shMic" aria-label="Speak to Shree" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
@@ -1149,149 +1151,249 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   </form>
 </div><script>
 (function(){
-  var D={"title": "Shree", "subtitle": "Manisha’s AI assistant", "speaking": "Speaking…", "greeting": "Namaste, Manisha is not here right now! I am Shree, her assistant. How can I help you?", "noMatch": "I don't have a clear answer for that, but these will get you there faster:", "faq": [{"q": "See my work", "keywords": ["work", "project", "case", "portfolio", "see"], "a": "Start with the case studies: a checkout where drop-off fell from 60% to 35%, eight live products for one client, a 200-component design system and an XR build.", "links": [{"label": "Checkout case study", "href": "case-checkout-cro.html"}, {"label": "Eight products", "href": "case-eight-products.html"}, {"label": "All work", "href": "work.html"}], "gesture": "point", "fx": null, "targets": ["#case-studies", "#work"]}, {"q": "Browse designs", "keywords": ["design", "designs", "behance", "ui", "app", "website"], "a": "There are ten designs, from a Nordic folklore game UI to a bilingual wallet app. Each one opens here, with a link to Behance.", "links": [{"label": "All designs", "href": "work.html#designs"}, {"label": "Behance", "href": "https://www.behance.net/manishasharma78"}], "gesture": "point", "fx": null, "targets": ["#designs", "#work"]}, {"q": "Skills & tools", "keywords": ["skills", "tools", "stack", "software", "figma"], "a": "Research, UI/UX, UX writing, CRO and XR, with Figma, Unity, Blender, Maze and GA4. Every decision is backed by research, not guesswork.", "links": [{"label": "What I do", "href": "index.html#services"}], "gesture": "talk", "fx": "sh-nod", "targets": ["#services"]}, {"q": "Work together", "keywords": ["hire", "collaborate", "contact", "freelance", "available", "email", "whatsapp"], "a": "The fastest way is email or WhatsApp. Manisha reads every message and usually replies within 24 hours.", "links": [{"label": "Email", "href": "mailto:maonishasharma@gmail.com"}, {"label": "WhatsApp", "href": "https://wa.me/971506535907"}, {"label": "Contact section", "href": "#contact"}], "gesture": "wave", "fx": "sh-hop", "targets": ["#contact"]}, {"q": "View resume", "keywords": ["resume", "cv", "download", "pdf"], "a": "The resume opens as a PDF. You can download it from there.", "links": [{"label": "View resume", "href": "Manisha-Sharma-Resume.pdf"}], "gesture": "point", "fx": "sh-nod", "targets": []}, {"q": "XR & VR background", "keywords": ["xr", "vr", "ar", "unity", "blender", "headset", "iit"], "a": "Environments people walk into, built in Unity and Blender and tested in a Meta Quest headset. Trained at IIT Delhi, Grade A.", "links": [{"label": "XR case study", "href": "case-xr.html"}], "gesture": "point", "fx": null, "targets": []}, {"q": "Experience & education", "keywords": ["experience", "education", "journey", "timeline", "background", "certificate"], "a": "UI & UX Designer at Technoid Infusion Agency (2024–26), freelancing before that, IIT Delhi XR, AI certifications and a UI/UX diploma.", "links": [{"label": "About Manisha", "href": "about.html"}], "gesture": "talk2", "fx": "sh-nod", "targets": []}, {"q": "Nebula design system", "keywords": ["nebula", "design system", "components", "tokens"], "a": "Nebula is Manisha's own design system: 238 components for web, mobile and XR, in dark and light.", "links": [{"label": "Explore Nebula", "href": "design-system.html"}], "gesture": "point", "fx": null, "targets": ["#nebula"]}]};
+  var D={"title": "Shree", "subtitle": "Manisha’s AI assistant", "speaking": "Speaking…", "greeting": "Hey, I'm Shree, Manisha's assistant. How can I help you? Would you like a website tour, or can I help you with anything else? You can speak to me through the mic at the bottom left, choose an option below, or type your question.", "noMatch": "I don't have a clear answer for that, but these will get you there faster:", "faq": [{"q": "See my work", "keywords": ["work", "project", "case", "portfolio", "see"], "a": "Start with the case studies: a checkout where drop-off fell from 60% to 35%, eight live products for one client, a 200-component design system and an XR build.", "links": [{"label": "Checkout case study", "href": "case-checkout-cro.html"}, {"label": "Eight products", "href": "case-eight-products.html"}, {"label": "All work", "href": "work.html"}], "gesture": "point", "targets": ["#case-studies", "#work"]}, {"q": "Browse designs", "keywords": ["design", "designs", "behance", "ui", "app", "website"], "a": "There are ten designs, from a Nordic folklore game UI to a bilingual wallet app. Each one opens here, with a link to Behance.", "links": [{"label": "All designs", "href": "work.html#designs"}, {"label": "Behance", "href": "https://www.behance.net/manishasharma78"}], "gesture": "point", "targets": ["#designs", "#work"]}, {"q": "Skills & tools", "keywords": ["skills", "tools", "stack", "software", "figma"], "a": "Research, UI/UX, UX writing, CRO and XR, with Figma, Unity, Blender, Maze and GA4. Every decision is backed by research, not guesswork.", "links": [{"label": "What I do", "href": "index.html#services"}], "gesture": "index", "targets": ["#services"]}, {"q": "Work together", "keywords": ["hire", "collaborate", "contact", "freelance", "available", "email", "whatsapp"], "a": "The fastest way is email or WhatsApp. Manisha reads every message and usually replies within 24 hours.", "links": [{"label": "Email", "href": "mailto:maonishasharma@gmail.com"}, {"label": "WhatsApp", "href": "https://wa.me/971506535907"}, {"label": "Contact section", "href": "#contact"}], "gesture": "wave", "targets": ["#contact"]}, {"q": "View resume", "keywords": ["resume", "cv", "download", "pdf"], "a": "The resume opens as a PDF. You can download it from there.", "links": [{"label": "View resume", "href": "Manisha-Sharma-Resume.pdf"}], "gesture": "thumb", "targets": []}, {"q": "XR & VR background", "keywords": ["xr", "vr", "ar", "unity", "blender", "headset", "iit"], "a": "Environments people walk into, built in Unity and Blender and tested in a Meta Quest headset. Trained at IIT Delhi, Grade A.", "links": [{"label": "XR case study", "href": "case-xr.html"}], "gesture": "ok", "targets": []}, {"q": "Experience & education", "keywords": ["experience", "education", "journey", "timeline", "background", "certificate"], "a": "UI & UX Designer at Technoid Infusion Agency (2024–26), freelancing before that, IIT Delhi XR, AI certifications and a UI/UX diploma.", "links": [{"label": "About Manisha", "href": "about.html"}], "gesture": "index", "targets": []}, {"q": "Nebula design system", "keywords": ["nebula", "design system", "components", "tokens"], "a": "Nebula is Manisha's own design system: 238 components for web, mobile and XR, in dark and light.", "links": [{"label": "Explore Nebula", "href": "design-system.html"}], "gesture": "point", "targets": ["#nebula"]}]};
   var $=function(id){return document.getElementById(id)};
-  var L=$('shLaunch'),P=$('shPanel'),B=$('shBackdrop'),M=$('shMsgs'),S=$('shSugg'),F=$('shForm'),I=$('shInput'),V=$('shVoice'),ST=$('shStatus'),VID=$('shVid'),STG=$('shStage'),MIC=$('shMic');
+  var L=$('shLaunch'),P=$('shPanel'),B=$('shBackdrop'),M=$('shMsgs'),S=$('shSugg'),F=$('shForm'),I=$('shInput'),V=$('shVoice'),ST=$('shStatus'),STG=$('shStage'),MIC=$('shMic'),AV=$('shAv'),LOADT=$('shLoad'),WK=$('shWalker'),WB=$('shWBub'),TP=$('shTPill');
   if(!L)return;
-  var started=false,voice=true,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started=false,voice=true,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,talking=false;
+  var page=(location.pathname.split('/').pop()||'index').replace('.html','')||'index';
   try{if(localStorage.getItem('chat-voice')==='off')voice=false}catch(e){}
-  /* ---- avatar clips ---- */
-  var safari=/^((?!chrome|crios|android|edg|fxios).)*safari/i.test(navigator.userAgent);
-  VID.src=safari?'shree-cream.mp4':'shree-alpha.webm';if(safari)STG.classList.add('sh-safari');
-  var CL={point:[0,1.8],talk:[1.8,4],wave:[4,5.6],talk2:[5.6,7.2],idle:[6.9,7.95]},cur='idle',loop=true,end=7.95,talking=false;
-  function clip(n,lp){var c=CL[n];cur=n;loop=!!lp;end=c[1];try{VID.currentTime=c[0];var pr=VID.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}
-  VID.addEventListener('timeupdate',function(){if(VID.currentTime>=end-0.06){if(talking){clip(cur==='talk'?'talk2':'talk')}else if(loop){clip(cur,true)}else{clip('idle',true)}}});
-  function react(n){STG.classList.remove('sh-hop','sh-nod');void STG.offsetWidth;if(n)STG.classList.add(n)}
-  /* ---- walker: Shree steps out of the popup onto the page ---- */
-  var WK=$('shWalker'),WV=$('shWVid');WV.src=VID.src;if(safari)WK.classList.add('sh-safari');
-  var wcur='idle',wend=7.95,wloop=true,wOut=false,wBack=null,wPos={x:0,y:0};
-  function wclip(n,lp){var c=CL[n];wcur=n;wloop=!!lp;wend=c[1];try{WV.currentTime=c[0];var pr=WV.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}}
-  WV.addEventListener('timeupdate',function(){if(WV.currentTime>=wend-0.06){if(talking){wclip(wcur==='talk'?'talk2':'talk')}else if(wloop){wclip(wcur,true)}else{wclip('idle',true)}}});
-  function wSize(){var w=innerWidth<760?150:230;return{w:w,h:Math.round(w*400/578)}}
-  function wMove(x,y,ms,cb){var d=Math.hypot(x-wPos.x,y-wPos.y);wPos={x:x,y:y};WK.style.transitionDuration=(ms==null?Math.min(1500,400+d*1.4):ms)+'ms';if(d>8&&ms!==0)WK.classList.add('sh-walking');WK.style.transform='translate('+Math.round(x)+'px,'+Math.round(y)+'px)';setTimeout(function(){WK.classList.remove('sh-walking');cb&&cb()},ms===0?0:Math.min(1500,400+d*1.4))}
-  function wHome(){var z=wSize();if(!P.hidden){var r=STG.getBoundingClientRect();return{x:r.left+r.width*0.6-z.w/2,y:r.bottom-z.h}}return{x:innerWidth-z.w-12,y:innerHeight-z.h}}
-  var slid=false;
-  function covers(t){if(P.hidden)return false;var r=t.getBoundingClientRect(),pr=P.getBoundingClientRect();if(slid){pr={left:pr.left,right:pr.right,top:pr.top,bottom:pr.bottom}}return r.right>pr.left-16&&r.left<pr.right&&r.bottom>pr.top&&r.top<pr.bottom}
-  function slide(on){if(on===slid||P.hidden)return 0;slid=on;var pr=P.getBoundingClientRect();P.style.transform=on?'translateX('+(-(pr.left-12))+'px)':'';return 520}
-  var wGen=0;
-  function stepOut(t){if(reduce)return;clearTimeout(wBack);wGen++;if(innerWidth>=760){var cov=covers(t);if(cov||slid){var need=cov&&!slid?true:(slid&&!cov?slid:slid);}if(cov&&!slid){if(!wOut){slide(true);setTimeout(function(){stepOut(t)},540);return}slide(true);setTimeout(function(){stepOut(t)},540);return}}
-    var z=wSize();
-    if(!wOut){var h=wHome();WK.hidden=false;wMove(h.x,h.y,0);WK.classList.toggle('sh-flip',true);wclip('idle',true);STG.classList.add('sh-out');wOut=true;void WK.offsetWidth}
-    var r=t.getBoundingClientRect(),pr=P.hidden?{left:innerWidth}:P.getBoundingClientRect();
-    var left=r.left-z.w*0.78,right=r.right-z.w*0.22,x,flip;
-    var pl=P.hidden?innerWidth:pr.left,prr=P.hidden?0:pr.right,wide=r.width>innerWidth*0.45;if(wide){if(slid||(!P.hidden&&pl<innerWidth/2)){x=Math.min(innerWidth-z.w-8,prr+28);flip=false}else{x=Math.max(8,Math.min(r.left+24,pl-z.w-8));flip=false}}else if(left>=4&&!(left<prr&&left+z.w>pl)){x=left;flip=false}else if(right+z.w<=pr.left-4){x=right;flip=true}else{x=Math.max(4,Math.min(pr.left-z.w-4,r.left+r.width/2-z.w/2));flip=x+z.w/2>r.left+r.width/2}
-    var y=Math.max(70,Math.min(innerHeight-z.h-4,r.top+Math.min(r.height,260)/2-z.h*0.45));
-    WK.classList.toggle('sh-flip',x+z.w/2>wPos.x+z.w/2);
-    wMove(x,y,null,function(){WK.classList.toggle('sh-flip',flip);wclip('point');ST.textContent='Showing you…';wBack=setTimeout(stepIn,tourOn?600000:5200)})}
-  function stepIn(){clearTimeout(wBack);if(!wOut)return;var g=wGen;if(slid){slide(false);setTimeout(function(){if(g===wGen)stepIn2(g)},540);return}stepIn2(g)}
-  function stepIn2(g){var h=wHome();WK.classList.toggle('sh-flip',h.x<wPos.x);wMove(h.x,h.y,null,function(){if(g!==wGen)return;WK.hidden=true;STG.classList.remove('sh-out');wOut=false;clip('wave');if(!talking)ST.textContent='Manisha’s AI assistant'})}
-  addEventListener('scroll',function(){if(wOut&&!tourOn&&Date.now()-hlAt>2500){clearTimeout(wBack);wBack=setTimeout(stepIn,900)}},{passive:true});
-  STG.addEventListener('click',function(){react('sh-hop');clip('wave');say('Hi! Ask me anything about Manisha.')});
-  P.addEventListener('pointermove',function(e){var r=STG.getBoundingClientRect();STG.classList.toggle('sh-face',e.clientX<r.left+r.width/2)});
-  /* ---- voice ---- */
+  function wait(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+  /* ================= 3D avatar ================= */
+  var A={ready:false,loading:null,head:null,failed:false,docked:true};
+  function webglOK(){try{var c=document.createElement('canvas');return !!(c.getContext('webgl2')||c.getContext('webgl'))}catch(e){return false}}
+  function loadAvatar(){
+    if(A.loading)return A.loading;
+    if(!webglOK()){A.failed=true;STG.classList.add('sh-fallback');return A.loading=Promise.resolve(false)}
+    STG.classList.add('sh-loading');
+    A.loading=import('./sh3-talkinghead.mjs').then(function(mod){
+      var dpr=window.devicePixelRatio||1;
+      var h=new mod.TalkingHead(AV,{ttsEndpoint:'',lipsyncModules:['en'],cameraView:'upper',cameraRotateEnable:false,cameraPanEnable:false,cameraZoomEnable:false,modelFPS:30,modelPixelRatio:Math.min(1,1.5/dpr),avatarMood:'happy',lightAmbientIntensity:2.2,lightDirectIntensity:28});
+      A.head=h;
+      return h.showAvatar({url:'shree.gltf',body:'F',avatarMood:'happy',lipsyncLang:'en',
+        retarget:{Hips:{y:0.03},Spine:{y:0.02},Spine1:{y:0.02,z:0.01},Spine2:{y:0.02,z:0.01},Neck:{z:0.02,y:0.01},Head:{z:0.02},LeftShoulder:{rx:-0.5},RightShoulder:{rx:-0.5},scaleToHipsLevel:1.0},
+        baseline:{headRotateX:-0.05,eyeBlinkLeft:0.15,eyeBlinkRight:0.15}},
+        function(ev){if(ev&&ev.lengthComputable)LOADT.textContent='Shree is getting ready… '+Math.round(ev.loaded/ev.total*100)+'%'});
+    }).then(function(){A.ready=true;STG.classList.remove('sh-loading');STG.classList.add('sh-ready');visibility();return true})
+      .catch(function(e){A.failed=true;STG.classList.remove('sh-loading');STG.classList.add('sh-fallback');try{console.warn('Shree 3D unavailable',e)}catch(_){}return false});
+    return A.loading;
+  }
+  function visibility(){if(!A.ready)return;var on=!P.hidden||!WK.hidden;try{if(on&&!A.head.isRunning)A.head.start();else if(!on&&A.head.isRunning)A.head.stop()}catch(e){}}
+  function gest(name,dir){if(!A.ready)return;var h=A.head;try{
+    if(name==='wave'){h.setMood('happy');h.playGesture('handup',2.4,true)}
+    else if(name==='point'){h.playGesture('side',3.2,dir==='left')}
+    else if(name==='thumb'){h.playGesture('thumbup',2.2,true)}
+    else if(name==='ok'){h.playGesture('ok',2.2,true)}
+    else if(name==='index'){h.playGesture('index',2.2,true)}
+    else if(name==='shrug'){h.playGesture('shrug',2)}
+  }catch(e){}}
+  function lips(text,rate){if(!A.ready)return;var h=A.head;try{
+    h.audioCtx.resume();var words=text.replace(/[“”"()]/g,'').split(/\s+/).filter(Boolean),t=0,wt=[],wd=[];
+    words.forEach(function(w){var d=Math.max(150,w.replace(/[^\w']/g,'').length*64)/(rate||1);wt.push(t);wd.push(d);t+=d+35;if(/[.,!?;:]$/.test(w))t+=/[.!?]$/.test(w)?300:160});
+    var sr=h.audioCtx.sampleRate,buf=h.audioCtx.createBuffer(1,Math.max(1,Math.ceil(sr*(t+250)/1000)),sr);
+    h.stopSpeaking();h.speakAudio({audio:buf,words:words,wtimes:wt,wdurations:wd},{lipsyncLang:'en'});
+  }catch(e){}}
+  function shutLips(){if(A.ready){try{A.head.stopSpeaking()}catch(e){}}}
+
+  /* ================= voice ================= */
   function syncVoice(){V.setAttribute('aria-pressed',voice);V.setAttribute('aria-label',voice?'Mute Shree':'Unmute Shree');V.classList.toggle('off',!voice)}
   syncVoice();
   var FEM=['heera','neerja','swara','veena','aria','jenny','zira','sonia','libby','emma','google uk english female','google us english','samantha','karen','moira','tessa','victoria','allison','ava','susan','serena','female'];
   var MALE=/\b(male|david|mark|ravi|prabhat|guy|george|daniel|alex|fred|ryan|thomas|james|aaron|arthur|oliver|rishi)\b/i;
   function voicesNow(){try{return speechSynthesis.getVoices()}catch(e){return[]}}
-  try{speechSynthesis.getVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener('voiceschanged',function(){voicesNow()})}catch(e){}
+  try{speechSynthesis.getVoices()}catch(e){}
   function pickVoice(){var vs=voicesNow().filter(function(v){return /^en/i.test(v.lang)});if(!vs.length)return null;var best=null,bs=-1;vs.forEach(function(v){var n=v.name.toLowerCase(),sc=0;var i=FEM.findIndex(function(f){return n.indexOf(f)>-1});if(i>-1)sc+=100-i;else if(/female/i.test(v.name))sc+=40;if(MALE.test(v.name)&&!/female/i.test(v.name))sc-=200;if(/en-IN/i.test(v.lang))sc+=15;if(/natural|online|neural/i.test(v.name))sc+=10;if(sc>bs){bs=sc;best=v}});return bs>-100?best:null}
-  function stop(){afterSpeak=null;try{speechSynthesis.cancel()}catch(e){}talking=false;ST.textContent='Manisha’s AI assistant';P.classList.remove('talking')}
-  var afterSpeak=null;
-  function speak(t,first,tries,cb){if(cb!==undefined)afterSpeak=cb;if(!voice||!('speechSynthesis' in window)){clip(first||'talk');var f0=afterSpeak;afterSpeak=null;if(f0)setTimeout(f0,Math.max(3500,t.length*65));return}if(!voicesNow().length&&(tries||0)<8){setTimeout(function(){speak(t,first,(tries||0)+1)},150);return}var myCb=afterSpeak;try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang='en';u.rate=1;u.pitch=1.12;u.onend=u.onerror=function(){talking=false;ST.textContent='Manisha’s AI assistant';P.classList.remove('talking');if(myCb&&afterSpeak===myCb){afterSpeak=null;myCb()}};ST.textContent='Speaking…';P.classList.add('talking');talking=true;clip(first||'talk');speechSynthesis.speak(u)}catch(e){}}
-  /* ---- chat ---- */
+  var afterSpeak=null,speakGen=0;
+  function idleStatus(){ST.textContent='Manisha’s AI assistant';P.classList.remove('talking')}
+  function stop(){afterSpeak=null;speakGen++;try{speechSynthesis.cancel()}catch(e){}talking=false;shutLips();idleStatus()}
+  function activated(){try{return !navigator.userActivation||navigator.userActivation.hasBeenActive}catch(e){return true}}
+  var pendingSpeak=null;
+  ['pointerdown','keydown','touchstart'].forEach(function(ev){addEventListener(ev,function(){if(pendingSpeak){var p=pendingSpeak;pendingSpeak=null;setTimeout(function(){speak(p[0],p[1],p[2])},60)}},{passive:true,capture:true})});
+  function speak(t,g,cb,tries){
+    if(cb!==undefined)afterSpeak=cb;
+    if(voice&&'speechSynthesis' in window&&!activated()){pendingSpeak=[t,g,afterSpeak];gest(g);return}
+    if(voice&&'speechSynthesis' in window&&!voicesNow().length&&(tries||0)<8){setTimeout(function(){speak(t,g,undefined,(tries||0)+1)},150);return}
+    var gen=++speakGen,myCb=afterSpeak;afterSpeak=null;
+    function done(){if(gen!==speakGen)return;talking=false;shutLips();idleStatus();if(myCb)myCb()}
+    gest(g);
+    if(!voice||!('speechSynthesis' in window)){talking=true;lips(t,1);setTimeout(done,Math.max(2500,t.length*62));return}
+    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang='en-IN';u.rate=1;u.pitch=1.1;
+      var began=false;u.onstart=function(){began=true;lips(t,1)};u.onend=u.onerror=done;
+      ST.textContent='Speaking…';P.classList.add('talking');talking=true;speechSynthesis.speak(u);
+      setTimeout(function(){if(!began&&gen===speakGen)lips(t,1)},400);
+    }catch(e){done()}
+  }
+
+  /* ================= chat ================= */
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
   function scroll(){M.scrollTop=M.scrollHeight}
   function add(role,text,links,chips){
     var row=el('div','sh-row '+role),b=el('div','sh-bub');b.appendChild(el('p',null,text));
-    if(links&&links.length){var w=el('div','sh-acts');links.forEach(function(l){var a=el('a','sh-act',l.label+' →');a.href=l.href;if(/^https?:/.test(l.href)){a.target='_blank';a.rel='noopener'}a.addEventListener('click',function(e){var h=l.href;if(/^(https?:|mailto:|tel:)/.test(h)||/\.pdf$/i.test(h)){react('sh-nod');clip('wave');return}e.preventDefault();if(h.charAt(0)==='#'){var t=document.querySelector(h);if(t){highlight(t);say('Here it is.','point')}return}var here=(location.pathname.split('/').pop()||'index.html').replace(/^$/,'index.html'),p=h.split('#'),pg=p[0].replace('.html','');if(p[1]&&(here.replace('.html','')===pg||(!pg))){var t2=document.getElementById(p[1]);if(t2){highlight(t2);say('Here it is.','point');return}}say('Taking you to '+l.label+'.','point');travel(h,'Here is '+l.label+'. Ask me if you want to see something else.')});w.appendChild(a)});b.appendChild(w)}
+    if(links&&links.length){var w=el('div','sh-acts');links.forEach(function(l){var a=el('a','sh-act',l.label+' →');a.href=l.href;if(/^https?:/.test(l.href)){a.target='_blank';a.rel='noopener'}
+      a.addEventListener('click',function(e){var h=l.href;if(/^(https?:|mailto:|tel:)/.test(h)||/\.pdf$/i.test(h)){gest('thumb');return}e.preventDefault();
+        if(h.charAt(0)==='#'){var t=document.querySelector(h);if(t){show(t,'Here it is.')}return}
+        var pg=h.split('#')[0].replace('.html',''),hs=h.split('#')[1];if(hs&&(!pg||pg===page)){var t2=document.getElementById(hs);if(t2){show(t2,'Here it is.');return}}
+        say('Taking you to '+l.label+'.','point');travel(h,'Here is '+l.label+'. Ask me if you want to see something else.')});w.appendChild(a)});b.appendChild(w)}
     if(chips){var c=el('div','sh-acts');chips.forEach(function(q){var x=el('button','sh-chip',q);x.type='button';x.addEventListener('click',function(){ask(q,true)});c.appendChild(x)});b.appendChild(c)}
     if(role==='bot'){row.appendChild(el('span','sh-av','S'))}
     row.appendChild(b);M.appendChild(row);scroll();
   }
-  function say(t,first){add('bot',t);speak(t,first)}
-  function typing(cb){var r=el('div','sh-row bot sh-typing');r.innerHTML='<span class="sh-av">S</span><div class="sh-bub"><i></i><i></i><i></i></div>';M.appendChild(r);scroll();setTimeout(function(){r.remove();cb()},reduce?0:600)}
+  function say(t,g,cb){add('bot',t);speak(t,g,cb)}
+  function typing(cb){var r=el('div','sh-row bot sh-typing');r.innerHTML='<span class="sh-av">S</span><div class="sh-bub"><i></i><i></i><i></i></div>';M.appendChild(r);scroll();if(A.ready){try{var s=STG.getBoundingClientRect();A.head.lookAt(s.left+s.width*0.2,s.top-120,700)}catch(e){}}setTimeout(function(){r.remove();cb()},reduce?0:600)}
   function match(t){t=t.toLowerCase();var best=null,score=0;D.faq.forEach(function(f){var s=0;f.keywords.forEach(function(k){if(t.indexOf(k)>-1)s+=k.length});if(s>score){score=s;best=f}});return best}
-  /* ---- commands: move the page ---- */
-  var page=(location.pathname.split('/').pop()||'index').replace('.html','')||'index';
-  function peek(){if(innerWidth>=760||P.hidden)return;P.hidden=true;B.hidden=true;document.documentElement.classList.remove('sh-open');setTimeout(function(){if(wOut){WK.hidden=true;STG.classList.remove('sh-out');wOut=false;clearTimeout(wBack)}P.hidden=false;B.hidden=false;document.documentElement.classList.add('sh-open');clip('idle',true)},tourOn?6500:4600)}
+
+  /* ================= walking on the page ================= */
+  var wOut=false,wPos={x:0,y:0},wBack=null,wGen=0,slid=false,peeked=false;
+  function wSize(){return innerWidth<760?{w:140,h:255}:{w:210,h:380}}
+  function setWalker(x,y,ms){wPos={x:x,y:y};WK.style.transitionDuration=(ms||0)+'ms';WK.style.transform='translate('+Math.round(x)+'px,'+Math.round(y)+'px)'}
+  function startPos(){var z=wSize();if(!P.hidden){var r=STG.getBoundingClientRect();return{x:r.left+r.width/2-z.w/2,y:Math.max(8,r.bottom-z.h)}}return{x:innerWidth+20,y:innerHeight-z.h-70}}
+  function exitPos(){var z=wSize();return{x:innerWidth+40,y:Math.min(innerHeight-z.h-70,Math.max(70,wPos.y))}}
+  function covers(t){if(P.hidden)return false;var r=t.getBoundingClientRect(),pr=P.getBoundingClientRect();return r.right>pr.left-16&&r.left<pr.right&&r.bottom>pr.top&&r.top<pr.bottom}
+  function slide(on){if(on===slid||P.hidden)return;slid=on;var pr=P.getBoundingClientRect();P.style.transform=on?'translateX('+(-(pr.left-12))+'px)':''}
+  function walkTo(x,y,cb){var h=A.head,dx=x-wPos.x,dist=Math.hypot(dx,y-wPos.y),g=wGen;
+    if(dist<10){cb&&cb();return}
+    var dur=Math.min(2800,600+dist*2.4);
+    try{h.setView('full',{cameraRotateY:dx>0?0.95:-0.95});h.playAnimation('shree-walk.fbx',null,dur/1000+0.5)}catch(e){}
+    WK.classList.add('sh-walking');setWalker(x,y,dur);
+    setTimeout(function(){if(g!==wGen)return;WK.classList.remove('sh-walking');try{h.stopAnimation();h.setView('full',{cameraRotateY:0})}catch(e){}setTimeout(function(){if(g===wGen&&cb)cb()},350)},dur)}
+  function goOut(){if(wOut)return;var z=wSize(),s=startPos();WK.style.width=z.w+'px';WK.style.height=z.h+'px';setWalker(s.x,s.y,0);WK.hidden=false;WK.appendChild(AV);A.docked=false;STG.classList.add('sh-out');wOut=true;visibility();try{A.head.setView('full');A.head.onResize()}catch(e){}}
+  function textRect(t){var r=t.getBoundingClientRect();if(/^H[1-3]$/.test(t.tagName)){try{var rg=document.createRange();rg.selectNodeContents(t);var q=rg.getBoundingClientRect();if(q.width>20)return q}catch(e){}}return r}
+  function spot(t){var z=wSize(),r=textRect(t),pl=P.hidden?innerWidth:P.getBoundingClientRect().left,pr=P.hidden?0:P.getBoundingClientRect().right,x,side;
+    var wide=r.width>innerWidth*0.45;
+    if(wide){if(P.hidden){x=innerWidth-z.w-Math.max(16,innerWidth*0.03);side='left'}else if(slid||pl<innerWidth/2){x=Math.min(innerWidth-z.w-8,pr+24);side='right'}else{x=Math.max(8,Math.min(r.left-10,pl-z.w-8));side='right'}}
+    else if(r.left-z.w*0.85>=4&&!(r.left-z.w*0.85<pr&&r.left>pl)){x=r.left-z.w*0.85;side='right'}
+    else{x=Math.min(innerWidth-z.w-6,r.right-z.w*0.15);if(!P.hidden&&x+z.w>pl&&x<pr)x=Math.max(6,pl-z.w-6);side='left'}
+    var y=Math.max(64,Math.min(innerHeight-z.h-(TP.hidden?8:76),r.top+Math.min(r.height,240)/2-z.h*0.42));
+    return{x:x,y:y,side:side,cx:r.left+Math.min(r.width,innerWidth)/2,cy:r.top+Math.min(r.height,240)/2}}
+  function stepOut(t,cb){clearTimeout(wBack);wGen++;var g=wGen;
+    if(!A.ready||reduce){cb&&cb(null);return}
+    if(innerWidth>=760&&covers(t)&&!slid){slide(true);setTimeout(function(){if(g===wGen)stepOut(t,cb)},540);return}
+    goOut();var s=spot(t);
+    walkTo(s.x,s.y,function(){if(g!==wGen)return;gest('point',s.side);try{A.head.lookAt(s.cx,s.cy,1800)}catch(e){}cb&&cb(s);if(!tourOn)wBack=setTimeout(stepIn,5600)})}
+  function stepIn(after){clearTimeout(wBack);if(!wOut){after&&after();return}var g=++wGen;bubble(null);
+    var was=slid;if(slid)slide(false);
+    setTimeout(function(){if(g!==wGen)return;var dest=(P.hidden&&!peeked)?exitPos():startPos();if(peeked){dest=exitPos()}
+      walkTo(dest.x,dest.y,function(){if(g!==wGen)return;WK.hidden=true;STG.appendChild(AV);A.docked=true;STG.classList.remove('sh-out');wOut=false;
+        try{A.head.setView('upper',{cameraRotateY:0});A.head.onResize()}catch(e){}
+        if(peeked){peeked=false;P.hidden=false;B.hidden=false;document.documentElement.classList.add('sh-open')}
+        visibility();after&&after()})},was?560:0)}
+  function bubble(text){if(!text){WB.hidden=true;return}WB.textContent=text;WB.hidden=false;var z=wSize();WB.classList.toggle('sh-left',wPos.x+z.w+250>innerWidth)}
+  addEventListener('scroll',function(){if(wOut&&!tourOn&&Date.now()-hlAt>2500){clearTimeout(wBack);wBack=setTimeout(stepIn,900)}},{passive:true});
+  addEventListener('resize',function(){if(wOut&&!tourOn)stepIn()});
+
   var hlAt=0;
-  function highlight(t){hlAt=Date.now();peek();document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});setTimeout(function(){t.classList.add('sh-hl');stepOut(t);setTimeout(function(){t.classList.remove('sh-hl')},tourOn?60000:4800)},reduce?0:650)}
-  function travel(url,line){try{sessionStorage.setItem('sh-arrive',line||'Here we are.')}catch(e){}clip('point');setTimeout(function(){location.href=url},reduce?0:1100)}
-  function show(sel,url,line){var t=sel&&document.querySelector(sel);if(t){highlight(t);say(line,'point');return}say(line,'point');travel(url,line)}
+  function light(t){document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});t.classList.add('sh-hl');setTimeout(function(){if(!tourOn)t.classList.remove('sh-hl')},6000)}
+  function show(t,line,g){hlAt=Date.now();
+    if(innerWidth<760&&!P.hidden&&!tourOn){peeked=true;P.hidden=true;B.hidden=true;document.documentElement.classList.remove('sh-open')}
+    t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    if(line)add('bot',line);
+    setTimeout(function(){light(t);stepOut(t,function(s){if(line)speak(line,s?null:(g||'point'));if(peeked&&!A.ready){setTimeout(function(){peeked=false;P.hidden=false;B.hidden=false;document.documentElement.classList.add('sh-open')},3500)}})},reduce?0:650)}
+  function travel(url,line){try{sessionStorage.setItem('sh-arrive',line||'Here we are.')}catch(e){}setTimeout(function(){location.href=url},reduce?0:1300)}
+
+  /* ================= commands ================= */
+  function showSel(sel,url,line){var t=sel&&document.querySelector(sel);if(t&&t.offsetParent!==null){show(t,line);return}say(line,'point');travel(url,line)}
   var DZ=[['palmway','palmway|car rental','Palmway, a car rental app with a Miami night drive feel.'],['tarnhollow','tarnhollow|tarn|game','Tarnhollow, her game interface for a Nordic folklore RPG.'],['daftar','daftar|wallet|pay later|pay-later','Daftar, a bilingual wallet and pay-later app in English and Arabic.'],['elane-living','elane|furniture','Elane Living, a luxury furniture website.'],['nuvra','nuvra|saas','Nuvra, a SaaS landing page in Arabic, right to left.'],['makeup-academy','makeup','The makeup academy website redesign.'],['travel-booking','travel','A travel booking website.'],['blablacar','blablacar|bla bla|carpool','A heuristic evaluation of BlaBlaCar.'],['emailer','emailer|email design|newsletter','Her emailer designs.']];
   var CMD=[
-    [/\b(hi|hello|hey|namaste|wave)\b/,function(){react('sh-hop');say('Namaste! Lovely to meet you. Where shall we go?','wave')}],
-    [/\b(dance|jump|celebrate|party)\b/,function(){react('sh-hop');setTimeout(function(){react('sh-hop')},1000);say('Yay! That is my happy dance.','wave')}],
-    [/\b(nod|yes|great|thanks|thank you|awesome|nice)\b/,function(){react('sh-nod');say('You are welcome! Anything else?','talk2')}],
-    [/scroll (down|more)|^down$|next section/,function(){peek();scrollBy({top:innerHeight*.75,behavior:reduce?'auto':'smooth'});say('Scrolling down.','point')}],
-    [/scroll up|^up$|back up/,function(){peek();scrollBy({top:-innerHeight*.75,behavior:reduce?'auto':'smooth'});say('Going up.','point')}],
+    [/\b(hi|hello|hey|namaste|wave)\b/,function(){say('Namaste! Lovely to meet you. Where shall we go?','wave')}],
+    [/\b(dance|jump|celebrate|party)\b/,function(){gest('wave');setTimeout(function(){gest('thumb')},1600);say('Yay! That makes me happy.','wave')}],
+    [/\b(yes|great|thanks|thank you|awesome|nice|cool)\b/,function(){say('You are welcome! Anything else?','thumb')}],
+    [/scroll (down|more)|^down$|next section/,function(){scrollBy({top:innerHeight*.75,behavior:reduce?'auto':'smooth'});say('Scrolling down.','point')}],
+    [/scroll up|^up$|back up/,function(){scrollBy({top:-innerHeight*.75,behavior:reduce?'auto':'smooth'});say('Going up.','point')}],
     [/\b(top|beginning|start of)\b/,function(){scrollTo({top:0,behavior:reduce?'auto':'smooth'});say('Back to the top.','point')}],
     [/\b(bottom|end of)\b/,function(){scrollTo({top:document.body.scrollHeight,behavior:reduce?'auto':'smooth'});say('All the way down.','point')}],
-    [/go beyond|fitness/,function(){show(page==='work'?'#go-beyond':null,'case-go-beyond.html','Go Beyond, a fitness app case study from research to high fidelity.')}],
-    [/\b(cro|checkout|conversion)\b/,function(){show(null,'case-checkout-cro.html','The checkout case study. Drop-off went from 60 to 35 percent.')}],
-    [/eight|8 products|one client/,function(){show(null,'case-eight-products.html','One client, eight digital experiences.')}],
-    [/\b(xr|vr|ar|virtual|unity|blender|headset)\b/,function(){show(null,'case-xr.html','Her XR work, six VR prototypes built in Unity and Blender.')}],
-    [/nebula|design system/,function(){show(null,'design-system.html','Nebula, her design system with 238 components.')}],
-    [/case stud/,function(){show(page==='work'?'#case-studies':null,'work.html#case-studies','Here are the case studies, problem to result.')}],
-    [/\b(designs|gallery|behance)\b/,function(){show(page==='index'?'#work':(page==='work'?'#designs':null),'work.html#designs','Here are her designs. Ask me about any of them.')}],
-    [/\b(about|who is|story|experience|education)\b/,function(){show(page==='about'?'main':null,'about.html','This is Manisha’s story, experience and education.')}],
-    [/\b(contact|hire|reach|email|whatsapp|talk to)\b/,function(){show('#contact','index.html#contact','Want to work together? This is where to reach her.')}],
-    [/\b(home|homepage|main page)\b/,function(){show(null,'index.html','Taking you home.')}],
-    [/\b(services|what does she do|skills)\b/,function(){show('#services','index.html#services','These are the things she does.')}],
+    [/go beyond|fitness/,function(){showSel(page==='work'?'#go-beyond':null,'case-go-beyond.html','Go Beyond, a fitness app case study from research to high fidelity.')}],
+    [/\b(cro|checkout|conversion)\b/,function(){showSel(null,'case-checkout-cro.html','The checkout case study. Drop-off went from 60 to 35 percent.')}],
+    [/eight|8 products|one client/,function(){showSel(null,'case-eight-products.html','One client, eight digital experiences.')}],
+    [/\b(xr|vr|ar|virtual|unity|blender|headset)\b/,function(){showSel(null,'case-xr.html','Her XR work, six VR prototypes built in Unity and Blender.')}],
+    [/nebula|design system/,function(){showSel(page==='index'?'#nebula':null,'design-system.html','Nebula, her design system with 238 components.')}],
+    [/case stud/,function(){showSel(page==='work'?'#case-studies':null,'work.html#case-studies','Here are the case studies, problem to result.')}],
+    [/\b(designs|gallery|behance)\b/,function(){showSel(page==='index'?'#work':(page==='work'?'#designs':null),'work.html#designs','Here are her designs. Ask me about any of them.')}],
+    [/\b(about|who is|story|experience|education)\b/,function(){showSel(page==='about'?'h1':null,'about.html','This is Manisha’s story, experience and education.')}],
+    [/\b(contact|hire|reach|email|whatsapp|talk to)\b/,function(){showSel('#contact','index.html#contact','Want to work together? This is where to reach her.')}],
+    [/\b(home|homepage|main page)\b/,function(){showSel(null,'index.html','Taking you home.')}],
+    [/\b(services|what does she do|skills)\b/,function(){showSel('#services','index.html#services','These are the things she does.')}]
   ];
   function command(t){t=t.toLowerCase();var nav=/\b(show|open|go|take|bring|see|view|scroll|navigate|where|find|move|jump|dance|wave|hi|hello|hey|namaste|top|bottom|thanks|thank)\b/.test(t)||t.split(/\s+/).length<=3;
-    for(var i=0;i<DZ.length;i++){if(new RegExp('\\b('+DZ[i][1]+')').test(t)){var d=DZ[i];show(document.getElementById(d[0])?'#'+d[0]:null,'design-'+d[0]+'.html',d[2]);return true}}
+    for(var i=0;i<DZ.length;i++){if(new RegExp('\\b('+DZ[i][1]+')').test(t)){var d=DZ[i],el2=document.getElementById(d[0]);showSel(el2&&el2.offsetParent!==null?'#'+d[0]:null,'design-'+d[0]+'.html',d[2]);return true}}
     if(!nav)return false;
     for(var j=0;j<CMD.length;j++){if(CMD[j][0].test(t)){CMD[j][1]();return true}}return false}
-  /* ---- guided tour ---- */
+
+  /* ================= guided tour (popup off, Shree walks) ================= */
   var TOUR=[
     {p:'index',s:'.hero',g:'wave',t:'Welcome to Manisha’s portfolio. She designs the screens people get through, the virtual spaces they want to stay in, and the words that guide them.'},
     {p:'index',s:'#work',g:'point',t:'This is her selected work. Ten designs, each opening right here, with a link to Behance.'},
     {p:'index',s:'#daftar',g:'point',t:'Daftar is a bilingual wallet and pay-later app, designed in English and Arabic, right to left.'},
     {p:'index',s:'#tarnhollow',g:'point',t:'Tarnhollow is a game interface for a Nordic folklore RPG.'},
-    {p:'index',s:'#services',g:'talk',t:'These are the things she does: research, UI and UX, UX writing, conversion optimisation and XR.'},
+    {p:'index',s:'#services',g:'index',t:'These are the things she does: research, UI and UX, UX writing, conversion optimisation and XR.'},
     {p:'index',s:'#nebula',g:'point',t:'Nebula is her own design system, with 238 components for web, mobile and XR.'},
     {p:'case-checkout-cro',s:'h1',g:'point',t:'This is her strongest case study. She redesigned a checkout and drop-off fell from 60 to 35 percent.'},
-    {p:'case-xr',s:'h1',g:'point',t:'And this is her XR work from IIT Delhi: six VR prototypes built in Unity and Blender, tested in a headset.'},
-    {p:'about',s:'h1',g:'talk2',t:'Here is her story, her experience and her education.'},
+    {p:'case-xr',s:'h1',g:'ok',t:'And this is her XR work from IIT Delhi: six VR prototypes built in Unity and Blender, tested in a headset.'},
+    {p:'about',s:'h1',g:'index',t:'Here is her story, her experience and her education.'},
     {p:'*',s:'#contact',g:'wave',t:'That’s the tour! If you’d like to work with Manisha, this is where to reach her. Thank you for visiting.'}
   ];
-  var TB=$('shTour'),tourOn=false,tourI=0,tourTimer=null;
+  var tourOn=false,tourI=0,tourTimer=null;
   function tourSave(i){try{if(i==null)sessionStorage.removeItem('sh-tour');else sessionStorage.setItem('sh-tour',String(i))}catch(e){}}
-  function tourUI(){TB.hidden=!tourOn;S.hidden=tourOn||started&&S.hidden;$('shTourStep').textContent='Tour '+(tourI+1)+' of '+TOUR.length;$('shTourNext').textContent=tourI>=TOUR.length-1?'Finish':'Next'}
-  function tourStart(){tourOn=true;tourI=0;add('bot','Lovely! Follow me. You can tap Next, or End tour at any time.');tourGo(0)}
-  function tourGo(i){clearTimeout(tourTimer);if(i>=TOUR.length){tourEnd(true);return}tourI=i;tourSave(i);tourOn=true;tourUI();var st=TOUR[i];
-    if(st.p!=='*'&&st.p!==page){stop();clip('point');try{sessionStorage.setItem('sh-arrive','__tour__')}catch(e){}setTimeout(function(){location.href=(st.p==='index'?'index.html':st.p+'.html')},reduce?0:900);return}
-    var t=document.querySelector(st.s);if(t)highlight(t);if(st.g==='wave')react('sh-hop');add('bot',st.t);
-    speak(st.t,st.g,0,function(){if(tourOn&&tourI===i)tourTimer=setTimeout(function(){tourGo(i+1)},1400)})}
-  function tourEnd(done){clearTimeout(tourTimer);document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});setTimeout(stepIn,done?2500:0);tourOn=false;tourSave(null);TB.hidden=true;S.hidden=false;if(done){react('sh-hop')}else{stop();add('bot','No problem, tour ended. Ask me anything.')}}
-  $('shTourNext').addEventListener('click',function(){stop();tourGo(tourI+1)});
-  $('shTourStop').addEventListener('click',function(){tourEnd(false)});
-  function faq(f){add('bot',f.a,f.links);if(f.fx)react(f.fx);speak(f.a,f.gesture||'talk');for(var i=0;i<(f.targets||[]).length;i++){var t=document.querySelector(f.targets[i]);if(t&&t.offsetParent!==null){highlight(t);break}}}
-  function ask(text,exact){text=(text||'').trim();if(!text)return;if(/\btour\b|guide me|show me around|walk me/i.test(text)){S.hidden=true;add('user',text);if(tourOn)tourEnd(false);typing(tourStart);return}if(tourOn)tourEnd(false);S.hidden=true;add('user',text);typing(function(){
+  function tourUI(){TP.hidden=!tourOn;document.documentElement.classList.toggle('sh-touring',tourOn);$('shTStep').textContent='Tour '+(tourI+1)+' of '+TOUR.length;$('shTNext').textContent=tourI>=TOUR.length-1?'Finish':'Next'}
+  function hidePanel(){P.hidden=true;B.hidden=true;L.setAttribute('aria-expanded','false');document.documentElement.classList.remove('sh-open');if(slid){slid=false;P.style.transform=''}}
+  function tourStart(){tourOn=true;tourI=0;stop();hidePanel();tourUI();bubble(null);loadAvatar().then(function(){tourGo(0)})}
+  function tourGo(i){clearTimeout(tourTimer);stop();if(i>=TOUR.length){tourEnd(true);return}tourI=i;tourSave(i);tourOn=true;tourUI();var st=TOUR[i];
+    if(st.p!=='*'&&st.p!==page){bubble('Follow me, next stop is on another page.');if(wOut){var e=exitPos();walkTo(e.x,e.y,function(){WK.hidden=true})}
+      try{sessionStorage.setItem('sh-arrive','__tour__')}catch(e){}setTimeout(function(){location.href=(st.p==='index'?'index.html':st.p+'.html')},reduce||!wOut?400:1500);return}
+    var t=document.querySelector(st.s);if(!t){tourGo(i+1);return}
+    hlAt=Date.now();bubble(null);t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    setTimeout(function(){if(!tourOn||tourI!==i)return;light(t);
+      var go=function(){if(!tourOn||tourI!==i)return;bubble(st.t);if(!A.ready)gest(st.g);speak(st.t,A.ready&&wOut?(st.g==='point'?null:st.g):st.g,function(){if(tourOn&&tourI===i)tourTimer=setTimeout(function(){tourGo(i+1)},1300)})};
+      if(A.ready&&!reduce)stepOut(t,go);else{fallbackBubble();go()}},reduce?0:700)}
+  function fallbackBubble(){if(A.ready)return;var z=wSize();WK.style.width=z.w+'px';WK.style.height='0px';setWalker(innerWidth-z.w-16,innerHeight-90,0);WK.hidden=false}
+  function tourEnd(done){clearTimeout(tourTimer);tourOn=false;tourSave(null);stop();tourUI();bubble(null);
+    document.querySelectorAll('.sh-hl').forEach(function(x){x.classList.remove('sh-hl')});
+    var finish=function(){WK.hidden=true;if(!A.docked){STG.appendChild(AV);A.docked=true;STG.classList.remove('sh-out');wOut=false;try{A.head.setView('upper',{cameraRotateY:0})}catch(e){}}
+      open();say(done?'Hope you enjoyed the tour! What would you like to do next?':'No problem, tour ended. How else can I help you?',done?'thumb':'ok')};
+    if(wOut&&A.ready){wGen++;var e=exitPos();walkTo(e.x,e.y,finish)}else finish()}
+  $('shTNext').addEventListener('click',function(){tourGo(tourI+1)});
+  $('shTEnd').addEventListener('click',function(){tourEnd(false)});
+
+  /* ================= ask / open / close ================= */
+  function faq(f){add('bot',f.a,f.links);var hit=null;for(var i=0;i<(f.targets||[]).length;i++){var t=document.querySelector(f.targets[i]);if(t&&t.offsetParent!==null){hit=t;break}}
+    if(hit){show(hit,null);setTimeout(function(){speak(f.a,null)},A.ready?2400:700)}else speak(f.a,f.gesture||'talk')}
+  function ask(text,exact){text=(text||'').trim();if(!text)return;
+    if(/\btour\b|guide me|show me around|walk me/i.test(text)){S.hidden=true;add('user',text);say('Lovely! Follow me. You can tap Next or End tour at the bottom right at any time.','wave',function(){tourStart()});return}
+    S.hidden=true;add('user',text);typing(function(){
     if(exact){var f=D.faq.find(function(x){return x.q===text});if(f)faq(f);return}
     if(command(text))return;
-    var m=match(text);if(m){faq(m)}else{add('bot',D.noMatch,null,D.faq.slice(0,5).map(function(x){return x.q}));speak('I am not sure about that one. Try one of these.','talk2')}})}
-  function chips(){S.innerHTML='';['Give me a tour','Show me Daftar','Show XR work','Say hello'].concat(D.faq.slice(0,4).map(function(f){return f.q})).forEach(function(q){var x=el('button','sh-chip',q);x.type='button';x.addEventListener('click',function(){ask(q,D.faq.some(function(f){return f.q===q}))});S.appendChild(x)})}
-  function greet(arrive){started=true;chips();if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}tourGo(ti);return}if(arrive){add('bot',arrive);clip('point');setTimeout(function(){clip('idle',true)},1800);var h=location.hash&&document.querySelector(location.hash);if(h)highlight(h);return}typing(function(){say(D.greeting,'wave')})}
-  function open(arrive){P.hidden=false;B.hidden=false;L.setAttribute('aria-expanded','true');document.documentElement.classList.add('sh-open');if(!started)greet(arrive);else clip('wave');setTimeout(function(){I.focus({preventScroll:true})},60)}
-  function close(){if(slid){slid=false;P.style.transform=''}if(wOut){clearTimeout(wBack);WK.hidden=true;STG.classList.remove('sh-out');wOut=false}if(tourOn){clearTimeout(tourTimer);tourOn=false;tourSave(null);TB.hidden=true}P.hidden=true;B.hidden=true;L.setAttribute('aria-expanded','false');document.documentElement.classList.remove('sh-open');stop();try{VID.pause()}catch(e){}try{sessionStorage.setItem('chat-guide-dismissed','1')}catch(e){}L.focus({preventScroll:true})}
+    var m=match(text);if(m){faq(m)}else{add('bot',D.noMatch,null,D.faq.slice(0,5).map(function(x){return x.q}));speak('I am not sure about that one. Try one of these.','shrug')}})}
+  function chips(){S.innerHTML='';['Give me a tour','Show me Daftar','Show XR work','Say hello'].concat(D.faq.slice(0,4).map(function(f){return f.q})).forEach(function(q){var x=el('button','sh-chip',q);x.type='button';x.addEventListener('click',function(){ask(q,D.faq.some(function(f){return f.q===q}))});S.appendChild(x)});S.hidden=false}
+  function greet(arrive){started=true;chips();
+    if(arrive){add('bot',arrive);Promise.race([loadAvatar(),wait(2500)]).then(function(){speak(arrive,'point')});var h=location.hash&&document.querySelector(location.hash);if(h)setTimeout(function(){show(h,null)},900);return}
+    typing(function(){add('bot',D.greeting);Promise.race([loadAvatar(),wait(2500)]).then(function(){speak(D.greeting,'wave')})})}
+  function open(arrive){P.hidden=false;B.hidden=false;L.setAttribute('aria-expanded','true');document.documentElement.classList.add('sh-open');loadAvatar();visibility();if(!started)greet(arrive);else gest('wave');setTimeout(function(){I.focus({preventScroll:true})},60)}
+  function close(){if(tourOn){tourEnd(false);return}clearTimeout(wBack);wGen++;if(wOut){WK.hidden=true;STG.appendChild(AV);A.docked=true;STG.classList.remove('sh-out');wOut=false;try{A.head.setView('upper',{cameraRotateY:0})}catch(e){}}
+    bubble(null);hidePanel();stop();visibility();try{sessionStorage.setItem('chat-guide-dismissed','1')}catch(e){}L.focus({preventScroll:true})}
   L.addEventListener('click',function(){P.hidden?open():close()});
   $('shClose').addEventListener('click',close);B.addEventListener('click',close);
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!P.hidden)close()});
-  V.addEventListener('click',function(){voice=!voice;try{localStorage.setItem('chat-voice',voice?'on':'off')}catch(e){}if(!voice)stop();syncVoice()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(tourOn)tourEnd(false);else if(!P.hidden)close()}});
+  V.addEventListener('click',function(){voice=!voice;try{localStorage.setItem('chat-voice',voice?'on':'off')}catch(e){}if(!voice){try{speechSynthesis.cancel()}catch(e){}}syncVoice()});
   F.addEventListener('submit',function(e){e.preventDefault();ask(I.value);I.value=''});
-  /* ---- voice commands ---- */
+  STG.addEventListener('click',function(){say('Hi! I’m right here. Ask me anything about Manisha.','wave')});
+  var lookT=0;P.addEventListener('pointermove',function(e){if(!A.ready||!A.docked||talking)return;var n=Date.now();if(n-lookT<1200)return;lookT=n;try{A.head.lookAt(e.clientX,e.clientY,900)}catch(_){}});
+
+  /* ================= voice commands ================= */
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(SR){MIC.hidden=false;MIC.addEventListener('click',function(){try{var r=new SR();r.lang='en-IN';r.interimResults=false;r.maxAlternatives=1;MIC.classList.add('rec');I.placeholder='Listening…';r.onresult=function(ev){ask(ev.results[0][0].transcript)};r.onerror=function(ev){if(ev.error==='not-allowed')say('Please allow the microphone to talk to me, or type instead.','talk2')};r.onend=function(){MIC.classList.remove('rec');I.placeholder='Ask, or say “show me Daftar”'};stop();r.start()}catch(e){MIC.classList.remove('rec')}})}
-  /* ---- arriving from a command on another page ---- */
+  if(SR){MIC.hidden=false;MIC.addEventListener('click',function(){try{var r=new SR();r.lang='en-IN';r.interimResults=false;r.maxAlternatives=1;stop();MIC.classList.add('rec');I.placeholder='Listening…';ST.textContent='Listening…';
+    if(A.ready){try{A.head.setMood('neutral');A.head.makeEyeContact(5000)}catch(e){}}
+    r.onresult=function(ev){if(A.ready){try{A.head.setMood('happy')}catch(e){}}ask(ev.results[0][0].transcript)};
+    r.onerror=function(ev){if(ev.error==='not-allowed')say('Please allow the microphone to talk to me, or type instead.','shrug')};
+    r.onend=function(){MIC.classList.remove('rec');I.placeholder='Ask, or say “show me Daftar”';if(!talking)idleStatus()};r.start()}catch(e){MIC.classList.remove('rec')}})}
+
+  /* ================= start ================= */
   var arrive=null;try{arrive=sessionStorage.getItem('sh-arrive');sessionStorage.removeItem('sh-arrive')}catch(e){}
+  if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}started=true;chips();tourOn=true;tourI=ti;tourUI();loadAvatar().then(function(){setTimeout(function(){tourGo(ti)},300)});return}
   if(arrive){setTimeout(function(){open(arrive)},500);return}
   // open on its own after ~10s of active scrolling, once per visit
   var dismissed=false;try{dismissed=!!sessionStorage.getItem('chat-guide-dismissed')}catch(e){}
   if(!dismissed){var acc=0,last=0,lastScroll=0,t0=performance.now();addEventListener('scroll',function(){lastScroll=performance.now()},{passive:true});
-    (function tick(now){if(!P.hidden||started)return;if(last&&now-lastScroll<1500)acc+=now-last;last=now;if(acc>=10000){open();return}requestAnimationFrame(tick)})(t0)}
+    (function tick(now){if(!P.hidden||started||tourOn)return;if(last&&now-lastScroll<1500)acc+=now-last;last=now;if(acc>=10000){open();return}requestAnimationFrame(tick)})(t0)}
 })();
 </script>
 </body>
