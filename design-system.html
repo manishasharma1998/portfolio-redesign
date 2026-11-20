@@ -1458,8 +1458,8 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   if(arrive==='__tour__'){var ti=0;try{ti=+sessionStorage.getItem('sh-tour')||0}catch(e){}started=true;chips();tourOn=true;tourI=ti;tourUI();loadAvatar().then(function(){setTimeout(function(){tourGo(ti)},300)});return}
   if(arrive){setTimeout(function(){open(arrive)},500);return}
   // start the website tour on its own 2 seconds after someone arrives, once per visit
-  var dismissed=false,seen=false;try{dismissed=!!sessionStorage.getItem('chat-guide-dismissed');seen=!!sessionStorage.getItem('sh-auto-opened')}catch(e){}
-  if(!dismissed&&!seen){setTimeout(function(){if(!P.hidden||started||tourOn)return;try{sessionStorage.setItem('sh-auto-opened','1')}catch(e){}started=true;chips();tourStart()},2000)}
+  var force=/[?&]tour\b/.test(location.search),seen=false;try{seen=!!localStorage.getItem('sh-toured')}catch(e){}
+  if(force||!seen){setTimeout(function(){if(!P.hidden||started||tourOn)return;try{localStorage.setItem('sh-toured','1')}catch(e){}started=true;chips();tourStart()},2000)}
 })();
 </script>
 </body>
