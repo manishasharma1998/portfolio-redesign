@@ -1270,9 +1270,14 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
   var afterSpeak=null,speakGen=0;
   function idleStatus(){ST.textContent='Manisha’s AI assistant';P.classList.remove('talking')}
   function stop(){afterSpeak=null;speakGen++;try{speechSynthesis.cancel()}catch(e){}talking=false;shutLips();idleStatus()}
-  function activated(){try{return !navigator.userActivation||navigator.userActivation.hasBeenActive}catch(e){return true}}
+  var gestured=false,unlocked=false;
+  function activated(){if(gestured)return true;try{return !!(navigator.userActivation&&navigator.userActivation.hasBeenActive)}catch(e){return false}}
   var pendingSpeak=null;
-  ['pointerdown','keydown','touchstart'].forEach(function(ev){addEventListener(ev,function(){if(pendingSpeak){var p=pendingSpeak;pendingSpeak=null;setTimeout(function(){speak(p[0],p[1],p[2])},60)}},{passive:true,capture:true})});
+  // phones (iPhone especially) only allow speech that starts inside a real tap, so speak right in the tap handler
+  function onGesture(){gestured=true;if(!('speechSynthesis' in window))return;
+    if(pendingSpeak){var p=pendingSpeak;pendingSpeak=null;unlocked=true;speak(p[0],p[1],p[2]);return}
+    if(!unlocked){unlocked=true;try{var z=new SpeechSynthesisUtterance(' ');z.volume=0;speechSynthesis.speak(z)}catch(e){}}}
+  ['click','touchend','keydown'].forEach(function(ev){addEventListener(ev,onGesture,{passive:true,capture:true})});
   function speak(t,g,cb,tries){
     if(cb!==undefined)afterSpeak=cb;
     var silent=voice&&'speechSynthesis' in window&&!activated();
@@ -1282,10 +1287,13 @@ ul.pts li::before{content:"✦";position:absolute;left:0;top:0;color:var(--brick
     function done(){if(gen!==speakGen)return;talking=false;shutLips();idleStatus();if(myCb)myCb()}
     gest(g);
     if(silent||!voice||!('speechSynthesis' in window)){talking=true;lips(t,1);setTimeout(done,Math.max(2500,t.length*62));return}
-    try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang='en-IN';u.rate=1;u.pitch=1.1;
+    try{if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();try{speechSynthesis.resume()}catch(e){}var u=new SpeechSynthesisUtterance(t),v=pickVoice();if(v){u.voice=v;u.lang=v.lang}else u.lang='en-IN';u.rate=1;u.pitch=1.1;
       var began=false;u.onstart=function(){began=true;lips(t,1)};u.onboundary=function(ev){if(ev.name==='word'||!ev.name)wordBreak()};u.onend=u.onerror=done;
       ST.textContent='Speaking…';P.classList.add('talking');talking=true;speechSynthesis.speak(u);
       setTimeout(function(){if(!began&&gen===speakGen)lips(t,1)},400);
+      // if the phone blocked the voice, carry on silently instead of getting stuck
+      setTimeout(function(){if(!began&&gen===speakGen){try{speechSynthesis.cancel()}catch(e){}if(!activated())pendingSpeak=tourOn?null:pendingSpeak;setTimeout(done,Math.max(1200,t.length*62-1600))}},1600);
+      setTimeout(function(){if(gen===speakGen&&talking)done()},Math.max(6000,t.length*95+4000));
     }catch(e){done()}
   }
 
